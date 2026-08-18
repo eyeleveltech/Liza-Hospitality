@@ -94,7 +94,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap",
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon-light.ico", type: "image/x-icon", media: "(prefers-color-scheme: light)" },
+      { rel: "icon", href: "/favicon-dark.ico", type: "image/x-icon", media: "(prefers-color-scheme: dark)" },
+      { rel: "icon", href: "/favicon-light-32x32.png", type: "image/png", sizes: "32x32", media: "(prefers-color-scheme: light)" },
+      { rel: "icon", href: "/favicon-dark-32x32.png", type: "image/png", sizes: "32x32", media: "(prefers-color-scheme: dark)" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     ],
   }),
 
@@ -120,6 +125,25 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const matcher = window.matchMedia("(prefers-color-scheme: dark)");
+    const updateFavicons = () => {
+      const isDark = matcher.matches;
+      const icoLinks = document.querySelectorAll<HTMLLinkElement>("link[rel='icon'][type='image/x-icon']");
+      icoLinks.forEach((link) => {
+        link.href = isDark ? "/favicon-dark.ico" : "/favicon-light.ico";
+      });
+      const pngLinks = document.querySelectorAll<HTMLLinkElement>("link[rel='icon'][type='image/png'][sizes='32x32']");
+      pngLinks.forEach((link) => {
+        link.href = isDark ? "/favicon-dark-32x32.png" : "/favicon-light-32x32.png";
+      });
+    };
+    updateFavicons();
+    matcher.addEventListener("change", updateFavicons);
+    return () => matcher.removeEventListener("change", updateFavicons);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
