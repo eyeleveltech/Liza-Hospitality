@@ -312,7 +312,7 @@ function ContactPage() {
                 Response Time Commitment
               </h3>
               <Diamond align="center" className="my-3" />
-              <p className="mt-3 text-sm leading-relaxed text-cream/80">
+              <p className="mt-3 text-sm leading-relaxed text-cream/80 text-center">
                 Our reservations and guest relations team is dedicated to responding to all
                 enquiries within 24 hours. For urgent requests, please call us directly.
               </p>
@@ -329,6 +329,8 @@ function ContactPage() {
             <h2 className="mt-5 font-serif text-4xl text-cream lg:text-5xl">
               Find Your Nearest Liza
             </h2>
+            <br />
+            <Diamond />
           </div>
 
           <div className="mt-14 grid gap-6 sm:grid-cols-2">
