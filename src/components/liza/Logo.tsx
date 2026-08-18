@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import lizaLogoPng from "@/assets/Asset 3.png";
+import lizaLogoSvg from "@/assets/Liza_Hospitality_logo.svg";
 import lizaMarkPng from "@/assets/Asset 4.png";
 
 export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -233,7 +233,7 @@ export function Logo({
     );
   }
 
-  // Direct Image PNG Lockup (renders Asset 3.png with clean masking or direct img)
+  // Direct Image SVG Lockup (renders Liza_Hospitality_logo.svg with clean masking or direct img)
   if (variant === "image") {
     if (tone === "light") {
       return (
@@ -242,7 +242,7 @@ export function Logo({
           {...props}
         >
           <img
-            src={lizaLogoPng}
+            src={lizaLogoSvg}
             alt="Liza Hospitality"
             className="h-10 w-auto object-contain"
             style={{ maxHeight: size ? `${size}px` : undefined }}
@@ -258,8 +258,8 @@ export function Logo({
       <div
         className={cn("inline-block select-none", bgClass, clearSpaceClass, className)}
         style={{
-          maskImage: `url(${lizaLogoPng})`,
-          WebkitMaskImage: `url(${lizaLogoPng})`,
+          maskImage: `url("${lizaLogoSvg}")`,
+          WebkitMaskImage: `url("${lizaLogoSvg}")`,
           maskRepeat: "no-repeat",
           maskSize: "contain",
           maskPosition: "left center",
@@ -267,7 +267,7 @@ export function Logo({
           WebkitMaskSize: "contain",
           WebkitMaskPosition: "left center",
           height: size ? `${size}px` : "48px",
-          width: size ? `calc(${size}px * 2.3)` : "112px",
+          width: size ? `calc(${size}px * 3.89)` : "187px",
         }}
         aria-label="Liza Hospitality"
         role="img"

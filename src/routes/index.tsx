@@ -22,15 +22,15 @@ import {
   IconWifi,
 } from "@/components/liza/BrandIcons";
 
-import heroLobby from "@/assets/hero-lobby.jpg";
-import hotelRoyal from "@/assets/hotel-royal.jpg";
-import hotelRegency from "@/assets/hotel-regency.jpg";
-import hotelGrande from "@/assets/hotel-grande.jpg";
-import hotelHotels from "@/assets/hotel-hotels.jpg";
-import roomExecutive from "@/assets/room-executive.jpg";
-import roomPremium from "@/assets/room-premium.jpg";
-import roomSuite from "@/assets/room-suite.jpg";
-import storyService from "@/assets/story-service.jpg";
+import heroLobby from "@/assets/hero_lobby.webp";
+import hotelRoyale from "@/assets/royalebyliza.webp";
+import hotelRegency from "@/assets/hotel-regency.webp";
+import hotelGrande from "@/assets/hotel-grande.webp";
+import hotelAltura from "@/assets/hotel-altura.webp";
+import roomExecutive from "@/assets/room-executive.webp";
+import roomPremium from "@/assets/room-premium.webp";
+import roomSuite from "@/assets/room-suite.webp";
+import storyService from "@/assets/story-service.webp";
 import asset4Png from "@/assets/Asset 4.png";
 
 import { format } from "date-fns";
@@ -71,13 +71,17 @@ export const Route = createFileRoute("/")({
 
 const hotels = [
   {
-    name: "Liza Royal",
-    img: hotelRoyal,
+    name: "Liza Royale",
+    img: hotelRoyale,
     text: "Timeless elegance in the heart of the city.",
   },
   { name: "Liza Regency", img: hotelRegency, text: "Classic comfort with contemporary charm." },
   { name: "Liza Grande", img: hotelGrande, text: "Spacious stays for modern travellers." },
-  { name: "Liza Hotels", img: hotelHotels, text: "Thoughtful hospitality, everywhere you go." },
+  {
+    name: "ALTURA by Liza",
+    img: hotelAltura,
+    text: "Contemporary elegance in the heart of Chennai.",
+  },
 ];
 
 const rooms = [
@@ -158,7 +162,7 @@ function Index() {
   const [quote, setQuote] = useState(0);
 
   // Functional Booking Bar State
-  const [selectedHotel, setSelectedHotel] = useState("Liza Royal, New Delhi");
+  const [selectedHotel, setSelectedHotel] = useState("Liza Royale, New Delhi");
   const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date(2026, 4, 20));
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(new Date(2026, 4, 22));
   const [guests, setGuests] = useState("2 Guests");
@@ -185,24 +189,34 @@ function Index() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="relative flex min-h-[calc(100svh-5rem)] flex-col justify-between overflow-hidden">
-        <img
-          src={heroLobby}
-          alt="Elegant lobby of a Liza Hospitality hotel"
-          width={1600}
-          height={900}
-          className="absolute inset-0 size-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, oklch(0.975 0.026 85) 24%, oklch(0.975 0.026 85 / 0.70) 50%, oklch(0.975 0.026 85 / 0) 72%)",
-          }}
-        />
+      <section className="relative flex min-h-[calc(100svh-5rem)] flex-col justify-between overflow-hidden bg-cream">
+        {/* Right-Anchored Hero Visual: Fits the full photo without zooming */}
+        <div className="absolute inset-y-0 right-0 w-full overflow-hidden lg:w-[58%] xl:w-[60%]">
+          <img
+            src={heroLobby}
+            alt="Liza Royale reception and lobby lounge"
+            className="size-full object-cover object-center"
+          />
+          {/* Desktop Left-to-Right Soft Fade */}
+          <div
+            className="absolute inset-0 pointer-events-none hidden lg:block"
+            style={{
+              background:
+                "linear-gradient(to right, oklch(0.975 0.026 85) 0%, oklch(0.975 0.026 85 / 0.5) 12%, transparent 28%)",
+            }}
+          />
+          {/* Mobile Overlay to protect text legibility */}
+          <div
+            className="absolute inset-0 pointer-events-none lg:hidden"
+            style={{
+              background:
+                "linear-gradient(to bottom, oklch(0.975 0.026 85 / 0.92) 0%, oklch(0.975 0.026 85 / 0.75) 45%, oklch(0.975 0.026 85 / 0.25) 100%)",
+            }}
+          />
+        </div>
 
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-6 pt-10 pb-4 lg:px-16 lg:pt-14 lg:pb-6">
-          <div className="max-w-2xl">
+          <div className="max-w-xl">
             <h1 className="font-serif text-5xl leading-[1.05] text-forest sm:text-6xl lg:text-[76px]">
               Experience
               <br />
@@ -245,10 +259,10 @@ function Index() {
                     <SelectValue placeholder="Choose a property" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Liza Royal, New Delhi">Liza Royal, New Delhi</SelectItem>
+                    <SelectItem value="Liza Royale, New Delhi">Liza Royale, New Delhi</SelectItem>
                     <SelectItem value="Liza Regency, Mumbai">Liza Regency, Mumbai</SelectItem>
                     <SelectItem value="Liza Grande, Bengaluru">Liza Grande, Bengaluru</SelectItem>
-                    <SelectItem value="Liza Hotels, Chennai">Liza Hotels, Chennai</SelectItem>
+                    <SelectItem value="ALTURA by Liza, Chennai">ALTURA by Liza, Chennai</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

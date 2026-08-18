@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Landmark, HeartHandshake, Salad, Leaf } from "lucide-react";
-import storyService from "@/assets/story-service.jpg";
-import hotelRoyal from "@/assets/hotel-royal.jpg";
-import hotelRegency from "@/assets/hotel-regency.jpg";
-import hotelGrande from "@/assets/hotel-grande.jpg";
-import hotelHotels from "@/assets/hotel-hotels.jpg";
+import storyService from "@/assets/story-service.webp";
+import hotelRoyale from "@/assets/royalebyliza.webp";
+import hotelRegency from "@/assets/hotel-regency.webp";
+import hotelGrande from "@/assets/hotel-grande.webp";
+import hotelAltura from "@/assets/hotel-altura.webp";
 import { Eyebrow, Diamond, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
+import { AnimatedCounter, useInView } from "@/components/liza/AnimatedStat";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
@@ -19,37 +20,37 @@ export const Route = createFileRoute("/about")({
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const stats = [
-  { number: "37+", label: "Years of Hospitality" },
-  { number: "4", label: "Iconic Properties" },
-  { number: "520+", label: "Rooms" },
-  { number: "30,000+", label: "Annual Guests" },
+  { value: 37, suffix: "+", label: "Years of Hospitality" },
+  { value: 4, suffix: "", label: "Iconic Properties" },
+  { value: 520, suffix: "+", label: "Rooms" },
+  { value: 30000, suffix: "+", formatComma: true, label: "Annual Guests" },
 ];
 
 const hotels = [
   {
-    name: "Liza Royal",
-    img: hotelRoyal,
-    city: "New Delhi",
+    name: "Liza Royale",
+    img: hotelRoyale,
+    city: "Chennai",
     description:
       "Our flagship property at Connaught Place — where heritage architecture meets contemporary luxury in the heart of India's capital.",
   },
   {
     name: "Liza Regency",
     img: hotelRegency,
-    city: "Mumbai",
+    city: "Chennai",
     description:
       "Overlooking Marine Drive, the Regency is where the sea breeze meets warm hospitality. A landmark stay in the City of Dreams.",
   },
   {
     name: "Liza Grande",
     img: hotelGrande,
-    city: "Bengaluru",
+    city: "Chennai",
     description:
       "Situated on M.G. Road, the Grande is a graceful retreat from the energy of India's Silicon Valley — thoughtful, spacious and serene.",
   },
   {
-    name: "Liza Hotels",
-    img: hotelHotels,
+    name: "ALTURA by Liza",
+    img: hotelAltura,
     city: "Chennai",
     description:
       "Our southern jewel on Anna Salai — a celebration of Tamil heritage, culinary tradition and the warmth that only the South can offer.",
@@ -86,6 +87,8 @@ const values = [
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 function AboutPage() {
+  const { ref: statsRef, isInView: isStatsVisible } = useInView<HTMLElement>({ threshold: 0.2 });
+
   return (
     <div className="min-h-screen bg-cream font-sans">
       <SiteHeader />
@@ -116,7 +119,11 @@ function AboutPage() {
             Rooted in culture. Crafted for today.
           </p>
           <div className="mt-6">
-            <Diamond />
+            <div className="mt-4 flex max-w-68 items-center gap-4">
+              <span className="h-px flex-1 bg-gold/70" />
+              <span className="size-1.5 rotate-45 bg-gold" />
+              <span className="h-px flex-1 bg-gold/70" />
+            </div>
           </div>
         </div>
       </section>
@@ -146,9 +153,6 @@ function AboutPage() {
                 India's heritage — reimagined with contemporary elegance, and delivered through
                 intuitive, sincere hospitality.
               </p>
-              <div className="mt-10">
-                <Diamond />
-              </div>
             </div>
 
             {/* Right — pullquote */}
@@ -174,7 +178,7 @@ function AboutPage() {
       </section>
 
       {/* ── Stats Bar ────────────────────────────────────────────────────── */}
-      <section className="bg-forest py-16">
+      <section ref={statsRef} className="bg-forest py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
             {stats.map((stat, i) => (
@@ -186,8 +190,14 @@ function AboutPage() {
                   i % 2 === 0 && i < stats.length - 1 && "border-r border-cream/20 lg:border-r-0",
                 )}
               >
-                <span className="font-sans text-5xl font-light tracking-tight text-gold">
-                  {stat.number}
+                <span className="font-sans text-5xl font-semibold tracking-tight text-gold">
+                  <AnimatedCounter
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    formatComma={stat.formatComma}
+                    isActive={isStatsVisible}
+                    duration={1800}
+                  />
                 </span>
                 <span className="mt-2 text-xs uppercase tracking-[0.22em] text-cream/70">
                   {stat.label}

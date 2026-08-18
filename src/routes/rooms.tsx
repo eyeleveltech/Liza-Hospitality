@@ -9,9 +9,9 @@ import {
   IconDailyHousekeeping,
   IconInRoomLocker,
 } from "@/components/liza/BrandIcons";
-import roomSuite from "@/assets/room-suite.jpg";
-import roomExecutive from "@/assets/room-executive.jpg";
-import roomPremium from "@/assets/room-premium.jpg";
+import roomSuite from "@/assets/room-suite.webp";
+import roomExecutive from "@/assets/room-executive.webp";
+import roomPremium from "@/assets/room-premium.webp";
 import { Eyebrow, Diamond, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
@@ -156,7 +156,11 @@ function RoomsPage() {
             Three carefully curated stays, designed around you.
           </p>
           <div className="mt-6">
-            <Diamond />
+            <div className="mt-4 flex max-w-100 items-center gap-4">
+              <span className="h-px flex-1 bg-gold/70" />
+              <span className="size-1.5 rotate-45 bg-gold" />
+              <span className="h-px flex-1 bg-gold/70" />
+            </div>
           </div>
         </div>
       </section>

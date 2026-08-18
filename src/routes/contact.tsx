@@ -32,8 +32,8 @@ type FormData = {
 
 const locations = [
   {
-    name: "Liza Royal",
-    suffix: "Royal",
+    name: "Liza Royale",
+    suffix: "Royale",
     city: "New Delhi",
     address: "Connaught Place, New Delhi – 110001",
     phone: "+91 11 4567 8900",
@@ -56,8 +56,8 @@ const locations = [
     email: "hello.grande@lizahospitality.com",
   },
   {
-    name: "Liza Hotels",
-    suffix: "Hotels",
+    name: "ALTURA by Liza",
+    suffix: "ALTURA",
     city: "Chennai",
     address: "Anna Salai, Chennai – 600002",
     phone: "+91 44 5678 9012",
@@ -120,8 +120,12 @@ function ContactPage() {
             Whether you're planning a stay, hosting an event or simply have a question — our team
             responds within 24 hours.
           </p>
-          <div className="mt-5 flex justify-center">
-            <Diamond />
+          <div className="mt-6 flex justify-center">
+            <div className="flex w-full max-w-100 items-center gap-4">
+              <span className="h-px flex-1 bg-gold/70" />
+              <span className="size-1.5 rotate-45 bg-gold" />
+              <span className="h-px flex-1 bg-gold/70" />
+            </div>
           </div>
         </div>
 
@@ -194,10 +198,10 @@ function ContactPage() {
                       <SelectValue placeholder="Choose a property" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="royal">Liza Royal – New Delhi</SelectItem>
+                      <SelectItem value="royal">Liza Royale – New Delhi</SelectItem>
                       <SelectItem value="regency">Liza Regency – Mumbai</SelectItem>
                       <SelectItem value="grande">Liza Grande – Bengaluru</SelectItem>
-                      <SelectItem value="chennai">Liza Hotels – Chennai</SelectItem>
+                      <SelectItem value="chennai">ALTURA by Liza – Chennai</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -308,11 +312,13 @@ function ContactPage() {
 
             {/* Response Commitment Box */}
             <div className="mt-8 bg-forest p-6">
-              <h3 className="font-serif text-xl text-cream text-center">
-                Response Time Commitment
-              </h3>
-              <Diamond align="center" className="my-3" />
-              <p className="mt-3 text-sm leading-relaxed text-cream/80 text-center">
+              <h3 className="font-serif text-xl text-cream">Response Time Commitment</h3>
+              <div className="mt-4 flex max-w-58 items-center gap-4">
+                <span className="h-px flex-1 bg-gold/70" />
+                <span className="size-1.5 rotate-45 bg-gold" />
+                <span className="h-px flex-1 bg-gold/70" />
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-cream/80">
                 Our reservations and guest relations team is dedicated to responding to all
                 enquiries within 24 hours. For urgent requests, please call us directly.
               </p>
