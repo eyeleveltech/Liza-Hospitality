@@ -26,7 +26,7 @@ export function SiteFooter() {
     <footer className="border-t border-border/60 bg-cream text-forest">
       <div className="mx-auto grid max-w-7xl gap-8 px-6 py-16 sm:grid-cols-2 lg:grid-cols-[1.35fr_1.25fr_0.8fr_0.95fr_1.25fr] lg:gap-8 xl:gap-10">
         <div className="lg:pr-4">
-          <Logo variant="image" tone="default" size={44} className="h-11 w-auto max-w-[180px]" />
+          <Logo variant="image" tone="default" size={44} className="h-11 w-auto max-w-45" />
           <p className="mt-4 text-xs leading-relaxed text-forest/70">
             Rooted in culture. Crafted for today. Elevating experiences, creating memories.
           </p>

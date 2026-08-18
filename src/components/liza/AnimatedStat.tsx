@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 
 export interface AnimatedCounterProps {
   value: number;
-  suffix?: string;
-  prefix?: string;
-  duration?: number;
-  formatComma?: boolean;
-  isActive?: boolean;
+  suffix?: string | undefined;
+  prefix?: string | undefined;
+  duration?: number | undefined;
+  formatComma?: boolean | undefined;
+  isActive?: boolean | undefined;
 }
 
 export function AnimatedCounter({
