@@ -8,7 +8,8 @@ import hotelAltura from "@/assets/hotel-altura.webp";
 import { Eyebrow, Diamond, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
-import { AnimatedCounter, useInView } from "@/components/liza/AnimatedStat";
+import { AnimatedCounter } from "@/components/liza/AnimatedStat";
+import { useInView } from "@/hooks/use-in-view";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 

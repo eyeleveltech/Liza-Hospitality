@@ -32,9 +32,9 @@ type FormData = {
 
 const locations = [
   {
-    name: "Liza Royale",
-    suffix: "Royale",
-    city: "New Delhi",
+    name: "Liza Royal",
+    suffix: "Royal",
+    city: "Chennai",
     address: "Connaught Place, New Delhi – 110001",
     phone: "+91 11 4567 8900",
     email: "hello.royal@lizahospitality.com",
@@ -42,7 +42,7 @@ const locations = [
   {
     name: "Liza Regency",
     suffix: "Regency",
-    city: "Mumbai",
+    city: "Chennai",
     address: "Marine Drive, Mumbai – 400020",
     phone: "+91 22 6789 0123",
     email: "hello.regency@lizahospitality.com",
@@ -50,7 +50,7 @@ const locations = [
   {
     name: "Liza Grande",
     suffix: "Grande",
-    city: "Bengaluru",
+    city: "Chennai",
     address: "M.G. Road, Bengaluru – 560001",
     phone: "+91 80 2345 6789",
     email: "hello.grande@lizahospitality.com",
@@ -198,7 +198,7 @@ function ContactPage() {
                       <SelectValue placeholder="Choose a property" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="royal">Liza Royale – New Delhi</SelectItem>
+                      <SelectItem value="royal">Liza Royal – New Delhi</SelectItem>
                       <SelectItem value="regency">Liza Regency – Mumbai</SelectItem>
                       <SelectItem value="grande">Liza Grande – Bengaluru</SelectItem>
                       <SelectItem value="chennai">ALTURA by Liza – Chennai</SelectItem>
