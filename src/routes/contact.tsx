@@ -32,27 +32,27 @@ type FormData = {
 
 const locations = [
   {
-    name: "Liza Royal",
-    suffix: "Royal",
+    name: "Liza ROYALE",
+    suffix: "ROYALE",
     city: "Chennai",
-    address: "Connaught Place, New Delhi – 110001",
-    phone: "+91 11 4567 8900",
-    email: "hello.royal@lizahospitality.com",
+    address: "Egmore, Chennai – 600008",
+    phone: "+91 44 2855 8900",
+    email: "hello.royale@lizahospitality.com",
   },
   {
-    name: "Liza Regency",
-    suffix: "Regency",
+    name: "Liza REGENCY",
+    suffix: "REGENCY",
     city: "Chennai",
-    address: "Marine Drive, Mumbai – 400020",
-    phone: "+91 22 6789 0123",
+    address: "T. Nagar, Chennai – 600017",
+    phone: "+91 44 2434 0123",
     email: "hello.regency@lizahospitality.com",
   },
   {
-    name: "Liza Grande",
-    suffix: "Grande",
+    name: "Liza GRANDE",
+    suffix: "GRANDE",
     city: "Chennai",
-    address: "M.G. Road, Bengaluru – 560001",
-    phone: "+91 80 2345 6789",
+    address: "Nungambakkam, Chennai – 600034",
+    phone: "+91 44 2827 6789",
     email: "hello.grande@lizahospitality.com",
   },
   {
@@ -61,7 +61,7 @@ const locations = [
     city: "Chennai",
     address: "Anna Salai, Chennai – 600002",
     phone: "+91 44 5678 9012",
-    email: "hello.chennai@lizahospitality.com",
+    email: "hello.altura@lizahospitality.com",
   },
 ];
 
@@ -198,10 +198,10 @@ function ContactPage() {
                       <SelectValue placeholder="Choose a property" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="royal">Liza Royal – New Delhi</SelectItem>
-                      <SelectItem value="regency">Liza Regency – Mumbai</SelectItem>
-                      <SelectItem value="grande">Liza Grande – Bengaluru</SelectItem>
-                      <SelectItem value="chennai">ALTURA by Liza – Chennai</SelectItem>
+                      <SelectItem value="royal">Liza ROYALE – Chennai</SelectItem>
+                      <SelectItem value="regency">Liza REGENCY – Chennai</SelectItem>
+                      <SelectItem value="grande">Liza GRANDE – Chennai</SelectItem>
+                      <SelectItem value="altura">ALTURA by Liza – Chennai</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -266,7 +266,7 @@ function ContactPage() {
                     Address
                   </p>
                   <p className="text-sm leading-relaxed text-forest">
-                    Liza House, Connaught Place, New Delhi – 110001, India
+                    Liza House, Anna Salai, Chennai – 600002, India
                   </p>
                 </div>
               </div>
@@ -278,9 +278,9 @@ function ContactPage() {
                   <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
                     Phone
                   </p>
-                  <p className="text-sm text-forest">+91 11 4567 8900</p>
+                  <p className="text-sm text-forest">+91 44 4567 8900</p>
                   <p className="mt-0.5 text-sm text-forest">
-                    +91 11 4567 8901 <span className="text-muted-foreground">(Reservations)</span>
+                    +91 44 4567 8901 <span className="text-muted-foreground">(Reservations)</span>
                   </p>
                 </div>
               </div>

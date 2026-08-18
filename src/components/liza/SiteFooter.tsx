@@ -10,7 +10,7 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-const hotels = ["Liza Royale", "Liza Regency", "Liza Grande", "ALTURA by Liza"];
+const hotels = ["Liza ROYALE", "Liza REGENCY", "Liza GRANDE", "ALTURA by Liza"];
 
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -47,11 +47,11 @@ export function SiteFooter() {
         <FooterCol title="Contact Us">
           <li className="flex items-start gap-2.5">
             <MapPin className="mt-0.5 size-3.5 shrink-0 text-gold" />
-            <span>Liza House, Connaught Place, New Delhi – 110001, India</span>
+            <span>Liza House, Anna Salai, Chennai – 600002, India</span>
           </li>
           <li className="flex items-center gap-2.5">
             <Phone className="size-3.5 shrink-0 text-gold" />
-            <span>+91 11 4567 8900</span>
+            <span>+91 44 4567 8900</span>
           </li>
           <li className="flex items-center gap-2.5">
             <Mail className="size-3.5 shrink-0 text-gold" />

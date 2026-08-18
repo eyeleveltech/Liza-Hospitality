@@ -29,32 +29,32 @@ const stats = [
 
 const hotels = [
   {
-    name: "Liza Royale",
+    name: "Liza ROYALE",
     img: hotelRoyale,
     city: "Chennai",
     description:
-      "Our flagship property at Connaught Place — where heritage architecture meets contemporary luxury in the heart of India's capital.",
+      "Our flagship property in Egmore, Chennai — where heritage architecture meets contemporary luxury and timeless hospitality.",
   },
   {
-    name: "Liza Regency",
+    name: "Liza REGENCY",
     img: hotelRegency,
     city: "Chennai",
     description:
-      "Overlooking Marine Drive, the Regency is where the sea breeze meets warm hospitality. A landmark stay in the City of Dreams.",
+      "Situated in T. Nagar, Chennai — where classic comfort meets warm South Indian hospitality and thoughtful service.",
   },
   {
-    name: "Liza Grande",
+    name: "Liza GRANDE",
     img: hotelGrande,
     city: "Chennai",
     description:
-      "Situated on M.G. Road, the Grande is a graceful retreat from the energy of India's Silicon Valley — thoughtful, spacious and serene.",
+      "A serene retreat in Nungambakkam, Chennai — thoughtful, spacious, and crafted for modern travellers seeking refined calm.",
   },
   {
     name: "ALTURA by Liza",
     img: hotelAltura,
     city: "Chennai",
     description:
-      "Our southern jewel on Anna Salai — a celebration of Tamil heritage, culinary tradition and the warmth that only the South can offer.",
+      "Our contemporary architectural jewel on Anna Salai, Chennai — a celebration of modern elegance, culinary craft and southern warmth.",
   },
 ];
 
@@ -145,9 +145,9 @@ function AboutPage() {
                 were.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                What started as a 42-room property in Connaught Place, New Delhi, has grown into
-                four iconic hotels spanning India's most vibrant cities — each one carrying the
-                warmth, craft and cultural integrity that has defined Liza from its very first day.
+                What started as a 42-room property in Chennai has grown into four iconic hotels
+                across the city's premier hubs — each one carrying the warmth, craft and cultural
+                integrity that has defined Liza from its very first day.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 Today, Liza Hospitality is more than a hotel group. It is a living expression of

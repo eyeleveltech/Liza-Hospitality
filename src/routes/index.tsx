@@ -71,16 +71,24 @@ export const Route = createFileRoute("/")({
 
 const hotels = [
   {
-    name: "Liza Royale",
+    name: "Liza ROYALE",
     img: hotelRoyale,
-    text: "Timeless elegance in the heart of the city.",
+    text: "Timeless elegance in the heart of Egmore, Chennai.",
   },
-  { name: "Liza Regency", img: hotelRegency, text: "Classic comfort with contemporary charm." },
-  { name: "Liza Grande", img: hotelGrande, text: "Spacious stays for modern travellers." },
+  {
+    name: "Liza REGENCY",
+    img: hotelRegency,
+    text: "Classic comfort with contemporary charm in T. Nagar, Chennai.",
+  },
+  {
+    name: "Liza GRANDE",
+    img: hotelGrande,
+    text: "Spacious stays for modern travellers in Nungambakkam, Chennai.",
+  },
   {
     name: "ALTURA by Liza",
     img: hotelAltura,
-    text: "Contemporary elegance in the heart of Chennai.",
+    text: "Contemporary elegance in the heart of Anna Salai, Chennai.",
   },
 ];
 
@@ -162,7 +170,7 @@ function Index() {
   const [quote, setQuote] = useState(0);
 
   // Functional Booking Bar State
-  const [selectedHotel, setSelectedHotel] = useState("Liza Royale, New Delhi");
+  const [selectedHotel, setSelectedHotel] = useState("Liza ROYALE, Chennai");
   const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date(2026, 4, 20));
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(new Date(2026, 4, 22));
   const [guests, setGuests] = useState("2 Guests");
@@ -259,9 +267,9 @@ function Index() {
                     <SelectValue placeholder="Choose a property" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Liza Royale, New Delhi">Liza Royale, New Delhi</SelectItem>
-                    <SelectItem value="Liza Regency, Mumbai">Liza Regency, Mumbai</SelectItem>
-                    <SelectItem value="Liza Grande, Bengaluru">Liza Grande, Bengaluru</SelectItem>
+                    <SelectItem value="Liza ROYALE, Chennai">Liza ROYALE, Chennai</SelectItem>
+                    <SelectItem value="Liza REGENCY, Chennai">Liza REGENCY, Chennai</SelectItem>
+                    <SelectItem value="Liza GRANDE, Chennai">Liza GRANDE, Chennai</SelectItem>
                     <SelectItem value="ALTURA by Liza, Chennai">ALTURA by Liza, Chennai</SelectItem>
                   </SelectContent>
                 </Select>
