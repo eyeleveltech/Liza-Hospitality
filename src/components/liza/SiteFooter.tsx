@@ -10,7 +10,7 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-const hotels = ["Liza Royal", "Liza Regency", "Liza Grande", "Liza Hotels"];
+const hotels = ["Liza Royale", "Liza Regency", "Liza Grande", "ALTURA by Liza"];
 
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -24,10 +24,10 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-cream text-forest">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 lg:grid-cols-5">
-        <div className="lg:pr-6">
-          <Logo variant="image" tone="default" size={54} className="h-14 w-32" />
-          <p className="mt-5 text-xs leading-relaxed text-forest/70">
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-16 sm:grid-cols-2 lg:grid-cols-[1.35fr_1.25fr_0.8fr_0.95fr_1.25fr] lg:gap-8 xl:gap-10">
+        <div className="lg:pr-4">
+          <Logo variant="image" tone="default" size={44} className="h-11 w-auto max-w-45" />
+          <p className="mt-4 text-xs leading-relaxed text-forest/70">
             Rooted in culture. Crafted for today. Elevating experiences, creating memories.
           </p>
           <div className="mt-6 flex gap-3">
@@ -45,17 +45,17 @@ export function SiteFooter() {
         </div>
 
         <FooterCol title="Contact Us">
-          <li className="flex gap-2">
+          <li className="flex items-start gap-2.5">
             <MapPin className="mt-0.5 size-3.5 shrink-0 text-gold" />
-            Liza House, Connaught Place, New Delhi – 110001, India
+            <span>Liza House, Connaught Place, New Delhi – 110001, India</span>
           </li>
-          <li className="flex gap-2">
+          <li className="flex items-center gap-2.5">
             <Phone className="size-3.5 shrink-0 text-gold" />
-            +91 11 4567 8900
+            <span>+91 11 4567 8900</span>
           </li>
-          <li className="flex gap-2">
+          <li className="flex items-center gap-2.5">
             <Mail className="size-3.5 shrink-0 text-gold" />
-            hello@lizahospitality.com
+            <span>hello@lizahospitality.com</span>
           </li>
         </FooterCol>
 
@@ -79,7 +79,7 @@ export function SiteFooter() {
           ))}
         </FooterCol>
 
-        <div>
+        <div className="lg:pl-2">
           <h3 className="text-xs tracking-[0.22em] uppercase font-semibold text-forest">
             Newsletter
           </h3>

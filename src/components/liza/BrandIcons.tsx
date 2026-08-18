@@ -1,21 +1,21 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-import iconAirportTransfer from "@/assets/icons/airport transfer.png";
-import iconAirConditioning from "@/assets/icons/air_conditioning.png";
-import iconComplimentaryToiletries from "@/assets/icons/complimentary_toiletries.png";
-import iconConcierge from "@/assets/icons/concierge.png";
-import iconDailyHousekeeping from "@/assets/icons/daily_housekeeping.png";
-import iconEvents from "@/assets/icons/events.png";
-import iconFitness from "@/assets/icons/fitness.png";
-import iconFood from "@/assets/icons/food.png";
-import iconInRoomLocker from "@/assets/icons/in_room_locker.png";
-import iconParking from "@/assets/icons/parking.png";
-import iconPool from "@/assets/icons/pool.png";
-import iconRestaurant from "@/assets/icons/restaurant.png";
-import iconRooms from "@/assets/icons/rooms.png";
-import iconWellness from "@/assets/icons/wellness.png";
-import iconWifi from "@/assets/icons/wifi.png";
+import iconAirportTransfer from "@/assets/icons/airport_transfer.svg";
+import iconAirConditioning from "@/assets/icons/air_conditioning.svg";
+import iconComplimentaryToiletries from "@/assets/icons/complimentary_toiletries.svg";
+import iconConcierge from "@/assets/icons/concierge.svg";
+import iconDailyHousekeeping from "@/assets/icons/daily_housekeeping.svg";
+import iconEvents from "@/assets/icons/events.svg";
+import iconFitness from "@/assets/icons/fitness.svg";
+import iconFood from "@/assets/icons/food.svg";
+import iconInRoomLocker from "@/assets/icons/in_room_safe.svg";
+import iconParking from "@/assets/icons/parking.svg";
+import iconPool from "@/assets/icons/pool.svg";
+import iconRestaurant from "@/assets/icons/restaurant.svg";
+import iconRooms from "@/assets/icons/rooms.svg";
+import iconWellness from "@/assets/icons/wellness.svg";
+import iconWifi from "@/assets/icons/wifi.svg";
 
 export type IconProps = React.HTMLAttributes<HTMLSpanElement> & {
   size?: number | string;
