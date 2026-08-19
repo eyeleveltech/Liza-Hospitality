@@ -130,7 +130,7 @@ function AboutPage() {
       </section>
 
       {/* ── Our Story ────────────────────────────────────────────────────── */}
-      <section className="bg-cream py-20 lg:py-20">
+      <section className="bg-cream py-20 lg:py-20 pattern-cream-section">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Left — narrative */}
@@ -224,7 +224,7 @@ function AboutPage() {
       </section>
 
       {/* ── Our Properties ───────────────────────────────────────────────── */}
-      <section className="bg-cream py-20 lg:py-20">
+      <section className="bg-cream py-20 lg:py-20 pattern-cream-section">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center">
             <Eyebrow>Our Hotels</Eyebrow>
@@ -301,7 +301,7 @@ function AboutPage() {
       </section>
 
       {/* ── CTA Strip ────────────────────────────────────────────────────── */}
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-20 pattern-cream-section">
         <div className="mx-auto max-w-7xl px-6 text-center">
           <Eyebrow>Experience Liza</Eyebrow>
           <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">

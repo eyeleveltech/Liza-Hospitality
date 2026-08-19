@@ -114,7 +114,7 @@ function ContactPage() {
       <SiteHeader />
 
       {/* ── Contact Hero & Interaction Fold ──────────────────────────────── */}
-      <section className="flex min-h-[calc(100svh-5rem)] flex-col justify-center bg-cream px-6 py-12 lg:py-16">
+      <section className="flex min-h-[calc(100svh-5rem)] flex-col justify-center bg-cream px-6 py-12 lg:py-16 pattern-cream-section">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Get in Touch</Eyebrow>
           <h1 className="mt-4 font-serif text-4xl leading-[1.1] text-forest sm:text-5xl lg:text-6xl">
