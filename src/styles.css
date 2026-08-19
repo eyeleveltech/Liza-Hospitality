@@ -156,4 +156,108 @@
   .form-field-card:focus-within {
     border-color: var(--forest);
   }
+
+  /* Luxury Hero Animations */
+  .animate-hero-title {
+    animation: hero-fade-up 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+  .animate-hero-sub {
+    animation: hero-fade-up 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+  .animate-hero-divider {
+    animation: hero-fade-up 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+  }
+  .animate-hero-bar {
+    animation: hero-fade-up 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  }
+  .animate-hero-img {
+    animation: hero-img-settle 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Luxury Button Light Reflection Sweep */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-shimmer::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 45%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(25deg);
+    pointer-events: none;
+    transition: left 0s;
+    z-index: 2;
+  }
+  .btn-shimmer:hover::after {
+    left: 140%;
+    transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Carousel Slide Transitions */
+  .animate-slide-next {
+    animation: slide-in-next 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-slide-prev {
+    animation: slide-in-prev 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes slide-in-next {
+  0% {
+    opacity: 0;
+    transform: translateX(42px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-prev {
+  0% {
+    opacity: 0;
+    transform: translateX(-42px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-img-settle {
+  0% {
+    transform: scale(1.04);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
