@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Calendar,
   ChevronDown,
@@ -48,6 +48,8 @@ import { Diamond, Eyebrow, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
 import { Logo, LogoMark } from "@/components/liza/Logo";
+import { ScrollReveal } from "@/components/liza/ScrollReveal";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -73,72 +75,76 @@ const hotels = [
   {
     name: "Liza ROYALE",
     img: hotelRoyale,
-    text: "Timeless elegance in the heart of Periamet, Chennai.",
+    text: "Periamet, Chennai — Flagship property with bespoke interiors, fine dining, and timeless hospitality.",
   },
   {
     name: "Liza REGENCY",
     img: hotelRegency,
-    text: "Classic comfort with contemporary charm in Periamet, Chennai.",
+    text: "Periamet, Chennai — Thoughtful comfort with warm hospitality, curated breakfast, and easy city connectivity.",
   },
   {
     name: "Liza GRANDE",
     img: hotelGrande,
-    text: "Spacious stays for modern travellers in Nungambakkam, Chennai.",
+    text: "Nungambakkam, Chennai — Modern poise in Chennai's cultural hub, tailored for discerning leisure and business travellers.",
   },
   {
     name: "ALTURA by Liza",
     img: hotelAltura,
-    text: "Contemporary elegance in the heart of Periamet, Chennai.",
+    text: "Periamet, Chennai — Contemporary architectural elegance, premium suites, and elevated rooftop dining.",
   },
 ];
 
 const rooms = [
   {
     name: "Executive Room",
+    price: "₹8,500",
+    text: "Intimate elegance with city skyline views and bespoke furnishings.",
     img: roomExecutive,
-    text: "Smart, serene and stylish spaces designed for comfort.",
-    price: "₹6,500",
   },
   {
     name: "Premium Room",
+    price: "₹12,000",
+    text: "Spacious comfort with garden views and deep-soaking bathtub.",
     img: roomPremium,
-    text: "Elevated comforts with warm textures and timeless design.",
-    price: "₹8,500",
   },
   {
-    name: "Suite Room",
+    name: "Liza Suite",
+    price: "₹22,000",
+    text: "Panoramic skyline views, private dining salon, and butler service.",
     img: roomSuite,
-    text: "Spacious suites with separate living and refined luxury.",
-    price: "₹12,500",
   },
 ];
 
 const amenities = [
+  { label: "Wi-Fi", Icon: IconWifi },
   { label: "Restaurant", Icon: IconRestaurant },
-  { label: "Wellness Spa", Icon: IconWellness },
-  { label: "Swimming Pool", Icon: IconPool },
-  { label: "Fitness Centre", Icon: IconFitness },
-  { label: "Events & Banquets", Icon: IconEvents },
+  { label: "Wellness", Icon: IconWellness },
+  { label: "Pool", Icon: IconPool },
+  { label: "Fitness", Icon: IconFitness },
+  { label: "Events", Icon: IconEvents },
   { label: "Concierge", Icon: IconConcierge },
-  { label: "Airport Transfer", Icon: IconAirportTransfer },
-  { label: "High Speed Wi-Fi", Icon: IconWifi },
+  { label: "Airport", Icon: IconAirportTransfer },
 ];
 
 const pillars = [
   {
-    label: "Timeless Heritage",
-    text: "Inspired by India's architecture, arts and traditions.",
+    label: "Timeless Architecture",
+    text: "Every property reflects the art, textures and architectural traditions of India.",
     Icon: Landmark,
   },
   {
-    label: "Thoughtful Service",
-    text: "Intuitive, sincere and always personal.",
+    label: "Intuitive Service",
+    text: "Warmth that anticipates your needs before you ask.",
     Icon: HeartHandshake,
   },
-  { label: "Culinary Excellence", text: "Dining that celebrates local flavours.", Icon: Salad },
   {
-    label: "Sustainable Choices",
-    text: "Responsible hospitality for a better tomorrow.",
+    label: "Culinary Craft",
+    text: "Authentic regional flavours and elevated contemporary dining.",
+    Icon: Salad,
+  },
+  {
+    label: "Sustainable Luxury",
+    text: "Thoughtful hospitality that respects our environment and local heritage.",
     Icon: Leaf,
   },
 ];
@@ -152,9 +158,9 @@ const testimonials = [
   },
   {
     quote:
-      "The suite was beautiful and the team anticipated every need. It felt less like a hotel and more like being hosted.",
-    name: "Rohit Menon",
-    city: "Bengaluru",
+      "A rare balance of Indian heritage and international luxury. The culinary experience alone was worth the stay.",
+    name: "Vikram Malhotra",
+    city: "Mumbai",
   },
   {
     quote:
@@ -167,30 +173,88 @@ const testimonials = [
 function Index() {
   const navigate = useNavigate();
   const [roomIndex, setRoomIndex] = useState(0);
+  const [roomDirection, setRoomDirection] = useState<"next" | "prev">("next");
+  const [isRoomHovered, setIsRoomHovered] = useState(false);
+
   const [quote, setQuote] = useState(0);
+  const [quoteDirection, setQuoteDirection] = useState<"next" | "prev">("next");
+  const [isQuoteHovered, setIsQuoteHovered] = useState(false);
 
-  // Functional Booking Bar State
-  const [selectedHotel, setSelectedHotel] = useState("Liza ROYALE, Chennai");
-  const [checkInDate, setCheckInDate] = useState<Date | undefined>(new Date(2026, 4, 20));
-  const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(new Date(2026, 4, 22));
-  const [guests, setGuests] = useState("2 Guests");
-  const [isSearching, setIsSearching] = useState(false);
-  const [searchFeedback, setSearchFeedback] = useState<string | null>(null);
+  // Auto-slide Testimonials every 2 seconds
+  useEffect(() => {
+    if (isQuoteHovered) return;
+    const interval = setInterval(() => {
+      setQuoteDirection("next");
+      setQuote((i) => (i + 1) % testimonials.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isQuoteHovered]);
 
-  const [checkInOpen, setCheckInOpen] = useState(false);
-  const [checkOutOpen, setCheckOutOpen] = useState(false);
+  // Auto-slide Featured Rooms every 2 seconds
+  useEffect(() => {
+    if (isRoomHovered) return;
+    const interval = setInterval(() => {
+      setRoomDirection("next");
+      setRoomIndex((i) => (i + 1) % rooms.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [isRoomHovered]);
+
+  // Booking search state
+  const [hotel, setHotel] = useState("");
+  const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
+  const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
+  const [guests, setGuests] = useState("2");
+  const [searchFeedback, setSearchFeedback] = useState("");
 
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSearching(true);
-    setSearchFeedback(`Checking availability for ${selectedHotel}...`);
-    setTimeout(() => {
-      setIsSearching(false);
-      navigate({ to: "/rooms" });
-    }, 450);
+    if (!hotel) {
+      setSearchFeedback("Please choose a hotel destination.");
+      return;
+    }
+    setSearchFeedback("");
+    navigate({
+      to: "/contact",
+      search: {
+        hotel,
+        guests,
+        checkIn: checkIn ? format(checkIn, "yyyy-MM-dd") : undefined,
+        checkOut: checkOut ? format(checkOut, "yyyy-MM-dd") : undefined,
+      },
+    });
   };
 
-  const orderedRooms = [0, 1, 2].map((i) => rooms[(roomIndex + i) % rooms.length]);
+  const handleNextRoom = () => {
+    setRoomDirection("next");
+    setRoomIndex((i) => (i + 1) % rooms.length);
+  };
+
+  const handlePrevRoom = () => {
+    setRoomDirection("prev");
+    setRoomIndex((i) => (i + rooms.length - 1) % rooms.length);
+  };
+
+  const handleNextQuote = () => {
+    setQuoteDirection("next");
+    setQuote((i) => (i + 1) % testimonials.length);
+  };
+
+  const handlePrevQuote = () => {
+    setQuoteDirection("prev");
+    setQuote((i) => (i + testimonials.length - 1) % testimonials.length);
+  };
+
+  const handleSelectQuote = (index: number) => {
+    setQuoteDirection(index > quote ? "next" : "prev");
+    setQuote(index);
+  };
+
+  const orderedRooms = [
+    rooms[roomIndex % rooms.length],
+    rooms[(roomIndex + 1) % rooms.length],
+    rooms[(roomIndex + 2) % rooms.length],
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -203,7 +267,7 @@ function Index() {
           <img
             src={heroLobby}
             alt="Liza Royale reception and lobby lounge"
-            className="size-full object-cover object-center"
+            className="size-full object-cover object-center animate-hero-img"
           />
           {/* Desktop Left-to-Right Soft Fade */}
           <div
@@ -225,17 +289,17 @@ function Index() {
 
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-6 pt-10 pb-4 lg:px-16 lg:pt-14 lg:pb-6">
           <div className="max-w-xl">
-            <h1 className="font-serif text-5xl leading-[1.05] text-forest sm:text-6xl lg:text-[76px]">
+            <h1 className="font-serif text-5xl leading-[1.05] text-forest sm:text-6xl lg:text-[76px] animate-hero-title">
               Experience
               <br />
               Timeless
               <br />
               Hospitality
             </h1>
-            <p className="mt-4 font-sans font-light italic text-forest/70 text-base sm:text-lg lg:text-xl">
+            <p className="mt-4 font-sans font-light italic text-forest/70 text-base sm:text-lg lg:text-xl animate-hero-sub">
               Four destinations. One promise.
             </p>
-            <div className="mt-4 flex max-w-60 items-center gap-4">
+            <div className="mt-4 flex max-w-60 items-center gap-4 animate-hero-divider">
               <span className="h-px flex-1 bg-gold/70" />
               <span className="size-1.5 rotate-45 bg-gold" />
               <span className="h-px flex-1 bg-gold/70" />
@@ -243,10 +307,10 @@ function Index() {
           </div>
         </div>
 
-        <div className="relative z-20 mx-auto w-full max-w-5xl px-6 pb-6 lg:pb-8">
+        <div className="relative z-20 mx-auto w-full max-w-5xl px-6 pb-6 lg:pb-8 animate-hero-bar">
           <form
             onSubmit={handleBookingSubmit}
-            className="border border-border/40 bg-card p-5 shadow-[0_20px_60px_-20px_rgba(31,56,46,0.4)] sm:p-6 lg:p-7"
+            className="border border-border/40 bg-card p-5 shadow-[0_20px_60px_-20px_rgba(31,56,46,0.4)] sm:p-6 lg:p-7 transition-all duration-300 hover:border-gold/30"
           >
             <div className="flex items-center justify-between">
               <h2 className="font-serif text-xl sm:text-2xl text-forest">Book Your Stay</h2>
@@ -258,57 +322,91 @@ function Index() {
             </div>
             <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_auto]">
               {/* Hotel Dropdown */}
-              <div className="form-field-card relative bg-card px-4 py-2">
-                <label className="block text-[0.6rem] tracking-[0.18em] uppercase text-muted-foreground">
-                  Hotel
+              <div>
+                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+                  Select Hotel
                 </label>
-                <Select value={selectedHotel} onValueChange={setSelectedHotel}>
-                  <SelectTrigger className="h-7 border-0 p-0 shadow-none focus:ring-0 [&>svg]:text-muted-foreground">
+                <Select value={hotel} onValueChange={setHotel}>
+                  <SelectTrigger className="form-field-card w-full bg-card px-4 py-3 text-xs text-forest focus:ring-0">
                     <SelectValue placeholder="Choose a property" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Liza ROYALE, Chennai">Liza ROYALE, Chennai</SelectItem>
-                    <SelectItem value="Liza REGENCY, Chennai">Liza REGENCY, Chennai</SelectItem>
-                    <SelectItem value="Liza GRANDE, Chennai">Liza GRANDE, Chennai</SelectItem>
-                    <SelectItem value="ALTURA by Liza, Chennai">ALTURA by Liza, Chennai</SelectItem>
+                    <SelectItem value="royal">Liza ROYALE – Chennai</SelectItem>
+                    <SelectItem value="regency">Liza REGENCY – Chennai</SelectItem>
+                    <SelectItem value="grande">Liza GRANDE – Chennai</SelectItem>
+                    <SelectItem value="altura">ALTURA by Liza – Chennai</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Check In Calendar Popover */}
-              <div className="form-field-card relative bg-card px-4 py-2">
-                <label className="block text-[0.6rem] tracking-[0.18em] uppercase text-muted-foreground">
-                  Check In
+              {/* Check-in */}
+              <div>
+                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+                  Check-in
                 </label>
-                <Popover open={checkInOpen} onOpenChange={setCheckInOpen}>
+                <Popover>
                   <PopoverTrigger asChild>
                     <button
                       type="button"
-                      className="mt-0.5 flex h-7 w-full cursor-pointer items-center justify-between text-left font-sans text-sm font-medium text-forest focus:outline-none"
+                      className="form-field-card flex w-full items-center justify-between bg-card px-4 py-3 text-left text-xs text-forest cursor-pointer hover:bg-card/80"
                     >
-                      <span className="truncate">
-                        {checkInDate ? format(checkInDate, "dd-MM-yyyy") : "Select date"}
+                      <span className={checkIn ? "text-forest" : "text-muted-foreground"}>
+                        {checkIn ? format(checkIn, "dd MMM yyyy") : "Select date"}
                       </span>
-                      <Calendar className="size-4 shrink-0 text-gold" />
+                      <Calendar className="size-3.5 text-muted-foreground" />
                     </button>
                   </PopoverTrigger>
                   <PopoverContent
-                    align="start"
                     className="w-auto border border-border/70 bg-cream p-0 text-forest shadow-2xl"
+                    align="start"
                   >
                     <CalendarPicker
                       mode="single"
-                      selected={checkInDate}
-                      onSelect={(date) => {
-                        if (date) {
-                          setCheckInDate(date);
-                          if (checkOutDate && date >= checkOutDate) {
-                            const nextDay = new Date(date);
-                            nextDay.setDate(nextDay.getDate() + 1);
-                            setCheckOutDate(nextDay);
-                          }
-                          setCheckInOpen(false);
+                      selected={checkIn}
+                      onSelect={(d) => {
+                        setCheckIn(d);
+                        if (checkOut && d && checkOut <= d) {
+                          setCheckOut(undefined);
                         }
+                      }}
+                      disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              {/* Check-out */}
+              <div>
+                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+                  Check-out
+                </label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className="form-field-card flex w-full items-center justify-between bg-card px-4 py-3 text-left text-xs text-forest cursor-pointer hover:bg-card/80"
+                    >
+                      <span className={checkOut ? "text-forest" : "text-muted-foreground"}>
+                        {checkOut ? format(checkOut, "dd MMM yyyy") : "Select date"}
+                      </span>
+                      <Calendar className="size-3.5 text-muted-foreground" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    className="w-auto border border-border/70 bg-cream p-0 text-forest shadow-2xl"
+                    align="start"
+                  >
+                    <CalendarPicker
+                      mode="single"
+                      selected={checkOut}
+                      onSelect={setCheckOut}
+                      disabled={(date) => {
+                        const today = new Date(new Date().setHours(0, 0, 0, 0));
+                        if (checkIn) {
+                          return date <= checkIn;
+                        }
+                        return date < today;
                       }}
                       initialFocus
                     />
@@ -316,71 +414,34 @@ function Index() {
                 </Popover>
               </div>
 
-              {/* Check Out Calendar Popover */}
-              <div className="form-field-card relative bg-card px-4 py-2">
-                <label className="block text-[0.6rem] tracking-[0.18em] uppercase text-muted-foreground">
-                  Check Out
-                </label>
-                <Popover open={checkOutOpen} onOpenChange={setCheckOutOpen}>
-                  <PopoverTrigger asChild>
-                    <button
-                      type="button"
-                      className="mt-0.5 flex h-7 w-full cursor-pointer items-center justify-between text-left font-sans text-sm font-medium text-forest focus:outline-none"
-                    >
-                      <span className="truncate">
-                        {checkOutDate ? format(checkOutDate, "dd-MM-yyyy") : "Select date"}
-                      </span>
-                      <Calendar className="size-4 shrink-0 text-gold" />
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent
-                    align="start"
-                    className="w-auto border border-border/70 bg-cream p-0 text-forest shadow-2xl"
-                  >
-                    <CalendarPicker
-                      mode="single"
-                      selected={checkOutDate}
-                      disabled={checkInDate ? (date) => date <= checkInDate : undefined}
-                      onSelect={(date) => {
-                        if (date) {
-                          setCheckOutDate(date);
-                          setCheckOutOpen(false);
-                        }
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-              </div>
-
-              {/* Guests Dropdown */}
-              <div className="form-field-card relative bg-card px-4 py-2">
-                <label className="block text-[0.6rem] tracking-[0.18em] uppercase text-muted-foreground">
+              {/* Guests */}
+              <div>
+                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
                   Guests
                 </label>
                 <Select value={guests} onValueChange={setGuests}>
-                  <SelectTrigger className="h-7 border-0 p-0 shadow-none focus:ring-0 [&>svg]:text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Users className="size-4 shrink-0 text-gold" />
-                      <SelectValue placeholder="Select guests" />
-                    </div>
+                  <SelectTrigger className="form-field-card w-full bg-card px-4 py-3 text-xs text-forest focus:ring-0">
+                    <SelectValue placeholder="Guests" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="1 Guest">1 Guest</SelectItem>
-                    <SelectItem value="2 Guests">2 Guests</SelectItem>
-                    <SelectItem value="3 Guests">3 Guests</SelectItem>
-                    <SelectItem value="4+ Guests (2 Rooms)">4+ Guests (2 Rooms)</SelectItem>
+                    <SelectItem value="1">1 Guest</SelectItem>
+                    <SelectItem value="2">2 Guests</SelectItem>
+                    <SelectItem value="3">3 Guests</SelectItem>
+                    <SelectItem value="4">4+ Guests</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              <button
-                type="submit"
-                disabled={isSearching}
-                className="flex cursor-pointer items-center justify-center bg-terracotta px-8 py-3.5 text-xs tracking-[0.2em] uppercase text-terracotta-foreground transition-opacity hover:opacity-90 active:scale-[0.99]"
-              >
-                {isSearching ? "Searching..." : "Search"}
-              </button>
+              {/* Submit */}
+              <div className="flex items-end">
+                <button
+                  type="submit"
+                  className="btn-shimmer flex w-full items-center justify-center gap-2 bg-terracotta px-7 py-3 text-xs tracking-[0.22em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-lg cursor-pointer"
+                >
+                  <span>Search</span>
+                  <ChevronDown className="size-3 -rotate-90" />
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -389,41 +450,46 @@ function Index() {
       {/* Hotels */}
       <section className="bg-cream px-6 py-20 lg:py-24 pattern-cream-section">
         <div className="mx-auto max-w-7xl">
-          <Eyebrow>Our Hotels</Eyebrow>
-          <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
-            Four Destinations. One Promise.
-          </h2>
+          <ScrollReveal variant="fade-up">
+            <Eyebrow>Our Hotels</Eyebrow>
+            <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
+              Four Destinations. One Promise.
+            </h2>
+          </ScrollReveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {hotels.map((h) => (
-              <article
-                key={h.name}
-                className="group overflow-hidden border border-border/60 bg-card transition-all duration-300 hover:border-gold/50 hover:shadow-[0_20px_50px_-30px_rgba(31,56,46,0.4)]"
-              >
-                <div className="overflow-hidden">
-                  <img
-                    src={h.img}
-                    alt={h.name}
-                    width={800}
-                    height={640}
-                    loading="lazy"
-                    className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <div className="px-5 py-6 text-center">
-                  <h3 className="font-serif text-xl text-forest">{h.name}</h3>
-                  <div className="my-3">
-                    <Diamond />
+            {hotels.map((h, i) => (
+              <ScrollReveal key={h.name} variant="fade-up" delay={i * 120}>
+                <article className="group overflow-hidden border border-border/60 bg-card transition-all duration-500 hover:border-gold/50 hover:shadow-[0_20px_50px_-30px_rgba(31,56,46,0.4)] hover:-translate-y-1">
+                  <div className="overflow-hidden">
+                    <img
+                      src={h.img}
+                      alt={h.name}
+                      width={800}
+                      height={640}
+                      loading="lazy"
+                      className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-108"
+                    />
                   </div>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{h.text}</p>
-                </div>
-              </article>
+                  <div className="px-5 py-6 text-center">
+                    <h3 className="font-serif text-xl text-forest">{h.name}</h3>
+                    <div className="my-3">
+                      <Diamond />
+                    </div>
+                    <p className="text-xs leading-relaxed text-muted-foreground">{h.text}</p>
+                  </div>
+                </article>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Featured rooms */}
-      <section className="relative overflow-hidden bg-forest px-6 py-20 lg:py-24">
+      <section
+        className="relative overflow-hidden bg-forest px-6 py-20 lg:py-24"
+        onMouseEnter={() => setIsRoomHovered(true)}
+        onMouseLeave={() => setIsRoomHovered(false)}
+      >
         {/* Brand Pattern Background Texture */}
         <div
           aria-hidden="true"
@@ -436,22 +502,30 @@ function Index() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-7xl">
-          <Eyebrow className="text-gold">Featured Rooms</Eyebrow>
-          <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
-            Rest. Relax. Reconnect.
-          </h2>
+          <ScrollReveal variant="fade-up">
+            <Eyebrow className="text-gold">Featured Rooms</Eyebrow>
+            <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
+              Rest. Relax. Reconnect.
+            </h2>
+          </ScrollReveal>
           <div className="mt-14 flex items-center gap-4 lg:gap-8">
-            <CarouselButton
-              label="Previous room"
-              onClick={() => setRoomIndex((i) => (i + rooms.length - 1) % rooms.length)}
-            >
+            <CarouselButton label="Previous room" onClick={handlePrevRoom}>
               <ChevronLeft className="size-4" />
             </CarouselButton>
-            <div className="grid flex-1 gap-6 md:grid-cols-3">
+            <div
+              key={roomIndex}
+              className={cn(
+                "grid flex-1 gap-6 md:grid-cols-3",
+                roomDirection === "next" ? "animate-slide-next" : "animate-slide-prev",
+              )}
+            >
               {orderedRooms.map(
                 (r) =>
                   r && (
-                    <article key={r.name} className="overflow-hidden bg-cream shadow-lg">
+                    <article
+                      key={r.name}
+                      className="overflow-hidden bg-cream shadow-lg transition-all duration-500 hover:shadow-2xl"
+                    >
                       <div className="overflow-hidden">
                         <img
                           src={r.img}
@@ -459,7 +533,7 @@ function Index() {
                           width={900}
                           height={640}
                           loading="lazy"
-                          className="h-52 w-full object-cover transition-transform duration-500 hover:scale-105"
+                          className="h-52 w-full object-cover transition-transform duration-700 hover:scale-108"
                         />
                       </div>
                       <div className="p-6">
@@ -473,7 +547,7 @@ function Index() {
                             <span className="text-sm font-semibold text-forest">{r.price}</span> /
                             night
                           </p>
-                          <button className="bg-forest px-5 py-3 text-[0.65rem] tracking-[0.2em] uppercase text-forest-foreground transition-colors hover:bg-terracotta cursor-pointer">
+                          <button className="btn-shimmer bg-forest px-5 py-3 text-[0.65rem] tracking-[0.2em] uppercase text-forest-foreground transition-all duration-300 hover:bg-terracotta cursor-pointer">
                             View Room
                           </button>
                         </div>
@@ -482,10 +556,7 @@ function Index() {
                   ),
               )}
             </div>
-            <CarouselButton
-              label="Next room"
-              onClick={() => setRoomIndex((i) => (i + 1) % rooms.length)}
-            >
+            <CarouselButton label="Next room" onClick={handleNextRoom}>
               <ChevronRight className="size-4" />
             </CarouselButton>
           </div>
@@ -495,19 +566,24 @@ function Index() {
       {/* Amenities */}
       <section className="bg-cream px-6 py-20 lg:py-24 pattern-cream-section">
         <div className="mx-auto max-w-7xl">
-          <Eyebrow>Amenities</Eyebrow>
-          <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
-            Designed Around You
-          </h2>
+          <ScrollReveal variant="fade-up">
+            <Eyebrow>Amenities</Eyebrow>
+            <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
+              Designed Around You
+            </h2>
+          </ScrollReveal>
           <div className="mt-14 grid grid-cols-2 gap-y-10 sm:grid-cols-4 lg:grid-cols-8">
             {amenities.map(({ label, Icon }, i) => (
-              <div
-                key={label}
-                className={`flex flex-col items-center gap-3 px-2 text-center ${i !== amenities.length - 1 ? "lg:border-r lg:border-border/60" : ""}`}
-              >
-                <Icon className="size-14 text-forest transition-transform duration-300 hover:scale-105" />
-                <span className="text-xs font-medium tracking-wide text-forest/80">{label}</span>
-              </div>
+              <ScrollReveal key={label} variant="fade-up" delay={i * 60}>
+                <div
+                  className={`group flex flex-col items-center gap-3 px-2 text-center ${i !== amenities.length - 1 ? "lg:border-r lg:border-border/60" : ""}`}
+                >
+                  <Icon className="size-14 text-forest transition-transform duration-300 group-hover:scale-110 group-hover:text-gold" />
+                  <span className="text-xs font-medium tracking-wide text-forest/80 transition-colors group-hover:text-forest">
+                    {label}
+                  </span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -516,39 +592,46 @@ function Index() {
       {/* Story */}
       <section className="grid lg:grid-cols-[0.9fr_1.1fr]">
         <div className="bg-cream px-6 py-20 lg:px-16 lg:py-24 pattern-cream-section">
-          <EyebrowLeft>Our Story</EyebrowLeft>
-          <h2 className="mt-6 font-serif text-4xl leading-tight text-forest lg:text-5xl">
-            Rooted in Culture.
-            <br />
-            Crafted for Today.
-          </h2>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Liza Hospitality blends India's rich heritage with contemporary elegance. Every detail
-            is thoughtfully curated to create warm, memorable experiences for our guests.
-          </p>
+          <ScrollReveal variant="fade-up">
+            <EyebrowLeft>Our Story</EyebrowLeft>
+            <h2 className="mt-6 font-serif text-4xl leading-tight text-forest lg:text-5xl">
+              Rooted in Culture.
+              <br />
+              Crafted for Today.
+            </h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+              Liza Hospitality blends India's rich heritage with contemporary elegance. Every detail
+              is thoughtfully curated to create warm, memorable experiences for our guests.
+            </p>
+          </ScrollReveal>
           <div className="mt-10 grid max-w-lg gap-8 sm:grid-cols-2">
-            {pillars.map(({ label, text, Icon }) => (
-              <div key={label} className="flex gap-3">
-                <Icon className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.25} />
-                <div>
-                  <h3 className="text-sm font-medium text-forest">{label}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
+            {pillars.map(({ label, text, Icon }, i) => (
+              <ScrollReveal key={label} variant="fade-up" delay={150 + i * 100}>
+                <div className="flex gap-3">
+                  <Icon
+                    className="mt-0.5 size-5 shrink-0 text-gold transition-transform duration-300 hover:scale-110"
+                    strokeWidth={1.25}
+                  />
+                  <div>
+                    <h3 className="text-sm font-medium text-forest">{label}</h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{text}</p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
-        <div className="relative min-h-96">
+        <div className="relative min-h-96 overflow-hidden">
           <img
             src={storyService}
             alt="A Liza Hospitality host arranging fresh flowers in the lobby"
             width={1104}
             height={912}
             loading="lazy"
-            className="absolute inset-0 size-full object-cover"
+            className="absolute inset-0 size-full object-cover transition-transform duration-1000 hover:scale-105"
           />
           {/* Circular Brand Crest Card with Clear Space & Do's Rules */}
-          <div className="absolute bottom-8 right-8 hidden w-64 border border-gold/40 bg-forest/95 p-6 text-center shadow-xl backdrop-blur-sm lg:block">
+          <div className="absolute bottom-8 right-8 hidden w-64 border border-gold/40 bg-forest/95 p-6 text-center shadow-xl backdrop-blur-sm lg:block transition-all duration-500 hover:border-gold">
             <p className="font-serif text-lg italic text-cream">Every Stay Tells a Story</p>
             <div className="my-3">
               <Diamond />
@@ -561,7 +644,11 @@ function Index() {
       </section>
 
       {/* Testimonials */}
-      <section className="relative overflow-hidden bg-forest px-6 py-20 lg:py-24">
+      <section
+        className="relative overflow-hidden bg-forest px-6 py-20 lg:py-24"
+        onMouseEnter={() => setIsQuoteHovered(true)}
+        onMouseLeave={() => setIsQuoteHovered(false)}
+      >
         {/* Brand Pattern Background Texture */}
         <div
           aria-hidden="true"
@@ -576,32 +663,51 @@ function Index() {
 
         <div className="relative z-10 mx-auto max-w-4xl">
           <div className="flex items-center justify-between gap-4 sm:gap-8">
-            <CarouselButton
-              label="Previous review"
-              onClick={() => setQuote((i) => (i + testimonials.length - 1) % testimonials.length)}
-            >
+            <CarouselButton label="Previous review" onClick={handlePrevQuote}>
               <ChevronLeft className="size-4" />
             </CarouselButton>
 
-            <div className="flex-1 px-2 text-center sm:px-6">
+            <div className="flex-1 px-2 text-center sm:px-6 overflow-hidden">
               <Eyebrow>Guest Experiences</Eyebrow>
               <h2 className="mt-4 font-serif text-3xl text-cream sm:text-4xl lg:text-5xl">
                 Loved by Our Guests
               </h2>
-              <blockquote className="mt-8 flex min-h-20 items-center justify-center font-serif text-lg leading-relaxed text-cream/90 italic lg:text-xl">
-                &ldquo;{testimonials[quote]?.quote}&rdquo;
-              </blockquote>
-              <div className="my-6">
-                <Diamond />
+
+              <div
+                key={quote}
+                className={cn(
+                  "mt-8",
+                  quoteDirection === "next" ? "animate-slide-next" : "animate-slide-prev",
+                )}
+              >
+                <blockquote className="flex min-h-20 items-center justify-center font-serif text-lg leading-relaxed text-cream/90 italic lg:text-xl">
+                  &ldquo;{testimonials[quote]?.quote}&rdquo;
+                </blockquote>
+                <div className="my-6">
+                  <Diamond />
+                </div>
+                <p className="text-sm font-medium text-cream">{testimonials[quote]?.name}</p>
+                <p className="mt-0.5 text-xs text-cream/60">{testimonials[quote]?.city}</p>
               </div>
-              <p className="text-sm font-medium text-cream">{testimonials[quote]?.name}</p>
-              <p className="mt-0.5 text-xs text-cream/60">{testimonials[quote]?.city}</p>
+
+              {/* Pagination Dots */}
+              <div className="mt-8 flex items-center justify-center gap-2.5">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => handleSelectQuote(i)}
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    className={cn(
+                      "transition-all duration-300 rounded-full cursor-pointer",
+                      i === quote ? "h-1.5 w-6 bg-gold" : "size-1.5 bg-cream/30 hover:bg-cream/60",
+                    )}
+                  />
+                ))}
+              </div>
             </div>
 
-            <CarouselButton
-              label="Next review"
-              onClick={() => setQuote((i) => (i + 1) % testimonials.length)}
-            >
+            <CarouselButton label="Next review" onClick={handleNextQuote}>
               <ChevronRight className="size-4" />
             </CarouselButton>
           </div>

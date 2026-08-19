@@ -100,7 +100,7 @@ export function SiteFooter() {
             />
             <button
               type="submit"
-              className="w-full bg-terracotta py-2.5 text-[0.65rem] tracking-[0.2em] uppercase text-terracotta-foreground transition-opacity hover:opacity-90 cursor-pointer"
+              className="btn-shimmer w-full bg-terracotta py-2.5 text-[0.65rem] tracking-[0.2em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-90 hover:shadow-md cursor-pointer"
             >
               Subscribe
             </button>

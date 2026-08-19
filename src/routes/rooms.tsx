@@ -15,6 +15,7 @@ import roomPremium from "@/assets/room-premium.webp";
 import { Eyebrow, Diamond, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
+import { ScrollReveal } from "@/components/liza/ScrollReveal";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
@@ -58,65 +59,59 @@ const roomsData: RoomData[] = [
       "High-speed complimentary Wi-Fi",
       "4K Smart TV with casting",
       "Nespresso coffee machine & tea bar",
-      "In-room digital safe",
-      "Daily housekeeping & turndown",
-      "24-hour in-room dining",
+      "In-room safe & bespoke vanity",
     ],
   },
   {
     id: "premium",
-    name: "Premium Suite",
-    tagline: "More space, richer textures, panoramic views.",
-    price: "₹ 14,000",
+    name: "Premium Room",
+    tagline: "Spacious comfort designed for longer stays and families.",
+    price: "₹ 12,000",
     img: roomPremium,
-    imgAlt: "Liza Hospitality Premium Suite — living area and bedroom",
-    size: "58 sq.m / 625 sq.ft",
+    imgAlt: "Liza Hospitality Premium Room — spacious living area, garden view",
+    size: "52 sq.m / 560 sq.ft",
     guests: "Up to 3 guests",
-    view: "City / Garden View",
+    view: "Garden & Pool View",
     description:
-      "Crafted for extended stays and discerning guests who appreciate room to breathe. Includes an expansive seating salon, deep-soaking bathtub and curated minibar of artisanal refreshments.",
+      "Generously proportioned with a dedicated sitting lounge, workstation and a private balcony overlooking our landscaped gardens. Includes deep-soaking bathtub and curated bath rituals.",
     amenities: [
-      "Separate living & sleeping areas",
-      "Deep-soaking freestanding bathtub",
-      "Walk-in wardrobe",
-      "Curated artisanal minibar",
-      "Bose sound system",
-      "Complimentary breakfast included",
-      "Priority check-in & check-out",
-      "Dedicated concierge access",
+      "King bed + daybed sleeper",
+      "Private garden-view balcony",
+      "Deep-soaking bathtub & separate shower",
+      "Dedicated executive workstation",
+      "Daily gourmet breakfast included",
+      "Evening turn-down service",
     ],
   },
   {
-    id: "presidential",
-    name: "Presidential Suite",
-    tagline: "The pinnacle of Liza hospitality. Unrivalled luxury.",
-    price: "₹ 28,000",
+    id: "suite",
+    name: "Liza Suite",
+    tagline: "The pinnacle of Liza hospitality. Unmatched luxury and privacy.",
+    price: "₹ 22,000",
     img: roomSuite,
-    imgAlt: "Liza Hospitality Presidential Suite — grand living room",
-    size: "110 sq.m / 1,185 sq.ft",
+    imgAlt: "Liza Hospitality Suite — panoramic city view, master bedroom and lounge",
+    size: "95 sq.m / 1,020 sq.ft",
     guests: "Up to 4 guests",
-    view: "Panoramic Landmark View",
+    view: "Panoramic Skyline",
     description:
-      "Spacious, refined and utterly personal — our Suites offer a separate living area, private dining and a dedicated butler to attend to every detail.",
+      "Our signature accommodation. An expansive master bedroom, separate dining and living salon, private butler service on request and panoramic vistas across the Chennai skyline.",
     amenities: [
-      "All Premium amenities",
-      "Separate living area",
-      "Dining area for four",
-      "Dedicated butler service",
-      "Complimentary airport transfer",
-      "Premium curated bar",
-      "Complimentary pressing",
-      "Late checkout on request",
+      "Master bedroom with king bed & walk-in wardrobe",
+      "Separate dining room for 6 guests",
+      "24-hour dedicated butler service",
+      "Complimentary airport transfers (both ways)",
+      "Club Lounge access & private check-in",
+      "Signature spa treatment for two",
     ],
   },
 ];
 
 const includedAmenities = [
-  { label: "Free High-Speed Wi-Fi", Icon: IconWifi },
-  { label: "Daily Housekeeping", Icon: IconDailyHousekeeping },
-  { label: "24-Hour Room Service", Icon: IconFood },
-  { label: "Air Conditioning", Icon: IconAirConditioning },
-  { label: "Complimentary Toiletries", Icon: IconComplimentaryToiletries },
+  { label: "High-Speed Wi-Fi", Icon: IconWifi },
+  { label: "Daily Breakfast", Icon: IconFood },
+  { label: "Climate Control", Icon: IconAirConditioning },
+  { label: "Luxury Toiletries", Icon: IconComplimentaryToiletries },
+  { label: "Housekeeping", Icon: IconDailyHousekeeping },
   { label: "In-Room Safe", Icon: IconInRoomLocker },
 ];
 
@@ -134,7 +129,7 @@ function RoomsPage() {
           alt="Liza Hospitality Suite — panoramic city view"
           width={1600}
           height={900}
-          className="absolute inset-0 size-full object-cover object-center"
+          className="absolute inset-0 size-full object-cover object-center animate-hero-img"
         />
         {/* Forest gradient — heavy on the left for text readability */}
         <div
@@ -147,15 +142,15 @@ function RoomsPage() {
         {/* Text block */}
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:px-16">
           <EyebrowLeft>Rooms &amp; Suites</EyebrowLeft>
-          <h1 className="mt-5 font-serif text-5xl leading-[1.08] text-cream lg:text-[4rem]">
+          <h1 className="mt-5 font-serif text-5xl leading-[1.08] text-cream lg:text-[4rem] animate-hero-title">
             Rest. Relax.
             <br />
             Reconnect.
           </h1>
-          <p className="mt-4 font-sans font-light italic text-cream/80 text-lg lg:text-xl">
+          <p className="mt-4 font-sans font-light italic text-cream/80 text-lg lg:text-xl animate-hero-sub">
             Three carefully curated stays, designed around you.
           </p>
-          <div className="mt-6">
+          <div className="mt-6 animate-hero-divider">
             <div className="mt-4 flex max-w-100 items-center gap-4">
               <span className="h-px flex-1 bg-gold/70" />
               <span className="size-1.5 rotate-45 bg-gold" />
@@ -168,7 +163,9 @@ function RoomsPage() {
       {/* ── Room Cards ─────────────────────────────────────────────────────── */}
       <section>
         {roomsData.map((room, index) => (
-          <RoomCard key={room.id} room={room} imageLeft={index % 2 === 0} />
+          <ScrollReveal key={room.id} variant="fade-up">
+            <RoomCard key={room.id} room={room} imageLeft={index % 2 === 0} />
+          </ScrollReveal>
         ))}
       </section>
 
@@ -186,22 +183,27 @@ function RoomsPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-5xl">
-          <Eyebrow>Every Room</Eyebrow>
-          <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
-            What's Always Included
-          </h2>
+          <ScrollReveal variant="fade-up">
+            <Eyebrow>Every Room</Eyebrow>
+            <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
+              What's Always Included
+            </h2>
+          </ScrollReveal>
           <div className="mt-14 grid grid-cols-2 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
             {includedAmenities.map(({ label, Icon }, i) => (
-              <div
-                key={label}
-                className={[
-                  "flex flex-col items-center gap-3 px-4 text-center",
-                  i !== includedAmenities.length - 1 ? "lg:border-r lg:border-cream/15" : "",
-                ].join(" ")}
-              >
-                <Icon className="size-16 text-gold transition-transform duration-300 hover:scale-105" />
-                <span className="text-xs leading-snug tracking-wide text-cream/80">{label}</span>
-              </div>
+              <ScrollReveal key={label} variant="fade-up" delay={i * 80}>
+                <div
+                  className={[
+                    "flex flex-col items-center gap-3 px-4 text-center group",
+                    i !== includedAmenities.length - 1 ? "lg:border-r lg:border-cream/15" : "",
+                  ].join(" ")}
+                >
+                  <Icon className="size-16 text-gold transition-transform duration-300 group-hover:scale-110" />
+                  <span className="text-xs leading-snug tracking-wide text-cream/80 group-hover:text-cream transition-colors">
+                    {label}
+                  </span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -210,27 +212,29 @@ function RoomsPage() {
       {/* ── Booking CTA ────────────────────────────────────────────────────── */}
       <section className="bg-cream px-6 py-20 lg:py-20 pattern-cream-section">
         <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow>Reserve Your Stay</Eyebrow>
-          <h2 className="mt-5 font-serif text-4xl text-forest lg:text-5xl">
-            Experience Liza.
-            <br />
-            Choose Your Room.
-          </h2>
-          <div className="my-7">
-            <Diamond />
-          </div>
-          <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
-            Whether you're here for business or leisure, every Liza stay is crafted to feel
-            personal. Select your room and let us take care of the rest.
-          </p>
-          <div className="mt-10">
-            <Link
-              to="/contact"
-              className="inline-block bg-terracotta px-12 py-4 text-[0.7rem] tracking-[0.24em] uppercase text-terracotta-foreground transition-opacity hover:opacity-90"
-            >
-              Book Now
-            </Link>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <Eyebrow>Reserve Your Stay</Eyebrow>
+            <h2 className="mt-5 font-serif text-4xl text-forest lg:text-5xl">
+              Experience Liza.
+              <br />
+              Choose Your Room.
+            </h2>
+            <div className="my-7">
+              <Diamond />
+            </div>
+            <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
+              Whether you're here for business or leisure, every Liza stay is crafted to feel
+              personal. Select your room and let us take care of the rest.
+            </p>
+            <div className="mt-10">
+              <Link
+                to="/contact"
+                className="btn-shimmer inline-block bg-terracotta px-12 py-4 text-[0.7rem] tracking-[0.24em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-xl"
+              >
+                Book Now
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -302,7 +306,7 @@ function RoomCard({ room, imageLeft }: { room: RoomData; imageLeft: boolean }) {
         <div className="mt-8 flex flex-wrap items-center gap-5">
           <Link
             to="/contact"
-            className="bg-forest px-8 py-3.5 text-[0.7rem] tracking-[0.22em] uppercase text-cream transition-opacity hover:opacity-90"
+            className="btn-shimmer inline-block bg-forest px-8 py-3.5 text-[0.7rem] tracking-[0.22em] uppercase text-cream transition-all duration-300 hover:opacity-90 hover:shadow-lg cursor-pointer"
           >
             Book This Room
           </Link>

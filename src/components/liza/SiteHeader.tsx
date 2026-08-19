@@ -37,7 +37,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <Link to="/contact">
-          <span className="inline-block bg-terracotta px-6 py-3 text-xs tracking-[0.2em] uppercase text-terracotta-foreground transition-opacity hover:opacity-90">
+          <span className="btn-shimmer inline-block bg-terracotta px-6 py-3 text-xs tracking-[0.2em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-90 hover:shadow-md cursor-pointer">
             Book Now
           </span>
         </Link>

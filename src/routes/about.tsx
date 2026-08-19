@@ -9,6 +9,7 @@ import { Eyebrow, Diamond, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
 import { AnimatedCounter } from "@/components/liza/AnimatedStat";
+import { ScrollReveal } from "@/components/liza/ScrollReveal";
 import { useInView } from "@/hooks/use-in-view";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
@@ -61,27 +62,27 @@ const hotels = [
 const values = [
   {
     Icon: Landmark,
-    title: "Timeless Heritage",
+    title: "Cultural Authenticity",
     description:
-      "Inspired by India's architecture, arts and traditions, every Liza property is a living ode to the culture it inhabits.",
+      "Every Liza space reflects the architectural cadence, craftsmanship and soul of its locale — honoring Indian heritage with contemporary poise.",
   },
   {
     Icon: HeartHandshake,
-    title: "Thoughtful Service",
+    title: "Intuitive Service",
     description:
-      "We anticipate before we are asked. Our hospitality is intuitive, sincere and always deeply personal.",
+      "We believe the finest hospitality anticipates without intruding. Our team is trained to listen, remember and craft stays that feel deeply personal.",
   },
   {
     Icon: Salad,
-    title: "Culinary Excellence",
+    title: "Culinary Craft",
     description:
-      "From regional classics to international cuisine, our kitchens celebrate the full, magnificent spectrum of Indian flavour.",
+      "From regional South Indian breakfast spreads to artisanal evening dining, our kitchens celebrate provenance, seasonality and bold flavours.",
   },
   {
     Icon: Leaf,
-    title: "Sustainable Choices",
+    title: "Thoughtful Luxury",
     description:
-      "Responsible hospitality is not an option — it is an obligation. We act for today and for tomorrow.",
+      "Sustainability is woven into our craft — from chemical-free botanical amenities to locally sourced materials and energy-conscious operations.",
   },
 ];
 
@@ -99,7 +100,7 @@ function AboutPage() {
         <img
           src={storyService}
           alt="Liza Hospitality — story and service"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover animate-hero-img"
         />
         {/* Left-to-transparent gradient overlay */}
         <div
@@ -111,15 +112,15 @@ function AboutPage() {
         />
         <div className="relative z-10 flex max-w-2xl flex-col justify-center px-8 py-16 lg:px-20">
           <EyebrowLeft>Our Story</EyebrowLeft>
-          <h1 className="mt-5 font-serif text-5xl leading-tight text-forest sm:text-6xl lg:text-[76px]">
+          <h1 className="mt-5 font-serif text-5xl leading-tight text-forest sm:text-6xl lg:text-[76px] animate-hero-title">
             Modern Heritage.
             <br />
             Timeless Stays.
           </h1>
-          <p className="mt-4 font-sans font-light italic text-forest/70 text-lg sm:text-xl">
+          <p className="mt-4 font-sans font-light italic text-forest/70 text-lg sm:text-xl animate-hero-sub">
             Rooted in culture. Crafted for today.
           </p>
-          <div className="mt-6">
+          <div className="mt-6 animate-hero-divider">
             <div className="mt-4 flex max-w-68 items-center gap-4">
               <span className="h-px flex-1 bg-gold/70" />
               <span className="size-1.5 rotate-45 bg-gold" />
@@ -134,7 +135,7 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             {/* Left — narrative */}
-            <div>
+            <ScrollReveal variant="fade-up">
               <EyebrowLeft>Heritage Since 1987</EyebrowLeft>
               <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">
                 A Legacy Built on Warmth
@@ -154,26 +155,28 @@ function AboutPage() {
                 India's heritage — reimagined with contemporary elegance, and delivered through
                 intuitive, sincere hospitality.
               </p>
-            </div>
+            </ScrollReveal>
 
             {/* Right — pullquote */}
-            <div className="flex flex-col items-center text-center">
-              <Diamond />
-              <blockquote className="mt-8 px-4">
-                <p className="font-sans text-xl italic leading-relaxed text-forest font-light">
-                  "Hospitality is not a service. It is the art of making someone feel they truly
-                  belong."
-                </p>
-                <footer className="mt-6">
-                  <span className="text-[0.7rem] font-medium tracking-[0.28em] uppercase text-gold">
-                    Arjun Malhotra, Founder
-                  </span>
-                </footer>
-              </blockquote>
-              <div className="mt-8">
+            <ScrollReveal variant="fade-up" delay={200}>
+              <div className="flex flex-col items-center text-center">
                 <Diamond />
+                <blockquote className="mt-8 px-4">
+                  <p className="font-sans text-xl italic leading-relaxed text-forest font-light">
+                    "Hospitality is not a service. It is the art of making someone feel they truly
+                    belong."
+                  </p>
+                  <footer className="mt-6">
+                    <span className="text-[0.7rem] font-medium tracking-[0.28em] uppercase text-gold">
+                      Arjun Malhotra, Founder
+                    </span>
+                  </footer>
+                </blockquote>
+                <div className="mt-8">
+                  <Diamond />
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -194,30 +197,31 @@ function AboutPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
             {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={cn(
-                  "flex flex-col items-center text-center",
-                  i % 2 === 0
-                    ? "border-r border-cream/20"
-                    : i < stats.length - 1
-                      ? "lg:border-r lg:border-cream/20"
-                      : "",
-                )}
-              >
-                <span className="font-sans text-5xl font-semibold tracking-tight text-gold">
-                  <AnimatedCounter
-                    value={stat.value}
-                    suffix={stat.suffix}
-                    formatComma={stat.formatComma}
-                    isActive={isStatsVisible}
-                    duration={1800}
-                  />
-                </span>
-                <span className="mt-2 text-xs uppercase tracking-[0.22em] text-cream/70">
-                  {stat.label}
-                </span>
-              </div>
+              <ScrollReveal key={stat.label} variant="fade-up" delay={i * 100}>
+                <div
+                  className={cn(
+                    "flex flex-col items-center text-center",
+                    i % 2 === 0
+                      ? "border-r border-cream/20"
+                      : i < stats.length - 1
+                        ? "lg:border-r lg:border-cream/20"
+                        : "",
+                  )}
+                >
+                  <span className="font-sans text-5xl font-semibold tracking-tight text-gold">
+                    <AnimatedCounter
+                      value={stat.value}
+                      suffix={stat.suffix}
+                      formatComma={stat.formatComma}
+                      isActive={isStatsVisible}
+                      duration={1800}
+                    />
+                  </span>
+                  <span className="mt-2 text-xs uppercase tracking-[0.22em] text-cream/70">
+                    {stat.label}
+                  </span>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -226,42 +230,43 @@ function AboutPage() {
       {/* ── Our Properties ───────────────────────────────────────────────── */}
       <section className="bg-cream py-20 lg:py-20 pattern-cream-section">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <Eyebrow>Our Hotels</Eyebrow>
-            <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">
-              Four Destinations. One Promise.
-            </h2>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="text-center">
+              <Eyebrow>Our Hotels</Eyebrow>
+              <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">
+                Four Destinations. One Promise.
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-2">
-            {hotels.map((hotel) => (
-              <div
-                key={hotel.name}
-                className="group overflow-hidden border border-border/60 bg-card transition-all duration-300 hover:border-gold/50 hover:shadow-[0_20px_50px_-30px_rgba(31,56,46,0.4)]"
-              >
-                <div className="overflow-hidden">
-                  <img
-                    src={hotel.img}
-                    alt={`${hotel.name} — ${hotel.city}`}
-                    className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+            {hotels.map((hotel, idx) => (
+              <ScrollReveal key={hotel.name} variant="fade-up" delay={idx * 150}>
+                <div className="group overflow-hidden border border-border/60 bg-card transition-all duration-500 hover:border-gold/50 hover:shadow-[0_20px_50px_-30px_rgba(31,56,46,0.4)] hover:-translate-y-1">
+                  <div className="overflow-hidden">
+                    <img
+                      src={hotel.img}
+                      alt={`${hotel.name} — ${hotel.city}`}
+                      className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-108"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <p className="text-[0.65rem] font-medium uppercase tracking-[0.24em] text-gold">
+                      {hotel.city}
+                    </p>
+                    <h3 className="mt-1 font-serif text-2xl text-forest">{hotel.name}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {hotel.description}
+                    </p>
+                    <Link
+                      to="/rooms"
+                      className="mt-5 inline-block text-xs font-medium tracking-widest uppercase text-forest transition-colors hover:text-gold"
+                    >
+                      Explore Hotel →
+                    </Link>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <p className="text-[0.65rem] font-medium uppercase tracking-[0.24em] text-gold">
-                    {hotel.city}
-                  </p>
-                  <h3 className="mt-1 font-serif text-2xl text-forest">{hotel.name}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {hotel.description}
-                  </p>
-                  <Link
-                    to="/rooms"
-                    className="mt-5 inline-block text-xs font-medium tracking-widest uppercase text-forest transition-colors hover:text-gold"
-                  >
-                    Explore Hotel →
-                  </Link>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -281,20 +286,27 @@ function AboutPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <Eyebrow>Our Promise</Eyebrow>
-            <h2 className="mt-5 font-serif text-4xl leading-snug text-cream lg:text-5xl">
-              What We Stand For
-            </h2>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="text-center">
+              <Eyebrow>Our Promise</Eyebrow>
+              <h2 className="mt-5 font-serif text-4xl leading-snug text-cream lg:text-5xl">
+                What We Stand For
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map(({ Icon, title, description }) => (
-              <div key={title} className="flex flex-col">
-                <Icon className="size-7 text-gold" strokeWidth={1.5} />
-                <h3 className="mt-4 font-serif text-xl text-cream">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/70">{description}</p>
-              </div>
+            {values.map(({ Icon, title, description }, i) => (
+              <ScrollReveal key={title} variant="fade-up" delay={i * 100}>
+                <div className="group flex flex-col">
+                  <Icon
+                    className="size-7 text-gold transition-transform duration-300 group-hover:scale-110"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="mt-4 font-serif text-xl text-cream">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-cream/70">{description}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -303,27 +315,29 @@ function AboutPage() {
       {/* ── CTA Strip ────────────────────────────────────────────────────── */}
       <section className="bg-cream py-20 pattern-cream-section">
         <div className="mx-auto max-w-7xl px-6 text-center">
-          <Eyebrow>Experience Liza</Eyebrow>
-          <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">
-            Every Stay Tells a Story.
-          </h2>
-          <div className="mt-6 flex justify-center">
-            <Diamond />
-          </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/rooms"
-              className="inline-block bg-forest px-8 py-3 text-xs font-medium uppercase tracking-[0.2em] text-cream transition-opacity hover:opacity-80"
-            >
-              Explore Rooms
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-block border border-forest px-8 py-3 text-xs font-medium uppercase tracking-[0.2em] text-forest transition-colors hover:bg-forest hover:text-cream"
-            >
-              Get in Touch
-            </Link>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <Eyebrow>Experience Liza</Eyebrow>
+            <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">
+              Every Stay Tells a Story.
+            </h2>
+            <div className="mt-6 flex justify-center">
+              <Diamond />
+            </div>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                to="/rooms"
+                className="btn-shimmer inline-block bg-forest px-8 py-3 text-xs font-medium uppercase tracking-[0.2em] text-cream transition-all duration-300 hover:opacity-90 hover:shadow-lg"
+              >
+                Explore Rooms
+              </Link>
+              <Link
+                to="/contact"
+                className="btn-shimmer inline-block border border-forest px-8 py-3 text-xs font-medium uppercase tracking-[0.2em] text-forest transition-all duration-300 hover:bg-forest hover:text-cream hover:shadow-md cursor-pointer"
+              >
+                Get in Touch
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
