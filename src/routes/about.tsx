@@ -54,7 +54,7 @@ const hotels = [
     img: hotelAltura,
     city: "Chennai",
     description:
-      "Our contemporary architectural jewel on Anna Salai, Chennai — a celebration of modern elegance, culinary craft and southern warmth.",
+      "Our contemporary architectural jewel in Periamet, Chennai — a celebration of modern elegance, culinary craft and southern warmth.",
   },
 ];
 
@@ -198,8 +198,11 @@ function AboutPage() {
                 key={stat.label}
                 className={cn(
                   "flex flex-col items-center text-center",
-                  i < stats.length - 1 && "lg:border-r lg:border-cream/20",
-                  i % 2 === 0 && i < stats.length - 1 && "border-r border-cream/20 lg:border-r-0",
+                  i % 2 === 0
+                    ? "border-r border-cream/20"
+                    : i < stats.length - 1
+                      ? "lg:border-r lg:border-cream/20"
+                      : "",
                 )}
               >
                 <span className="font-sans text-5xl font-semibold tracking-tight text-gold">
