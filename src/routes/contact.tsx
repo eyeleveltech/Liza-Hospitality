@@ -35,7 +35,8 @@ const locations = [
     name: "Liza ROYALE",
     suffix: "ROYALE",
     city: "Chennai",
-    address: "Egmore, Chennai – 600008",
+    address:
+      "2, Rama Pillai St, next to KFC, near Chennai Central Railway Station, Periamet, Park Town, Chennai, Greater Chennai, Tamil Nadu 600003",
     phone: "+91 44 2855 8900",
     email: "hello.royale@lizahospitality.com",
   },
@@ -43,7 +44,8 @@ const locations = [
     name: "Liza REGENCY",
     suffix: "REGENCY",
     city: "Chennai",
-    address: "T. Nagar, Chennai – 600017",
+    address:
+      "7/4, Vepery High Rd, near Jawaharlal Nehru Stadium, Periamet, Opp:, Chennai, Tamil Nadu 600007",
     phone: "+91 44 2434 0123",
     email: "hello.regency@lizahospitality.com",
   },
@@ -328,8 +330,19 @@ function ContactPage() {
       </section>
 
       {/* ── Hotel Locations ───────────────────────────────────────────────────── */}
-      <section className="bg-forest py-20 lg:py-24">
-        <div className="mx-auto max-w-6xl px-6">
+      <section className="relative overflow-hidden bg-forest py-20 lg:py-24">
+        {/* Brand Pattern Background Texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "url('/brand-pattern.webp')",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+            mixBlendMode: "overlay",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-6xl px-6">
           <div className="text-center">
             <Eyebrow>Our Properties</Eyebrow>
             <h2 className="mt-5 font-serif text-4xl text-cream lg:text-5xl">

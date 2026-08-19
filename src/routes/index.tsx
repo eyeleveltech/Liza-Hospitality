@@ -73,12 +73,12 @@ const hotels = [
   {
     name: "Liza ROYALE",
     img: hotelRoyale,
-    text: "Timeless elegance in the heart of Egmore, Chennai.",
+    text: "Timeless elegance in the heart of Periamet, Chennai.",
   },
   {
     name: "Liza REGENCY",
     img: hotelRegency,
-    text: "Classic comfort with contemporary charm in T. Nagar, Chennai.",
+    text: "Classic comfort with contemporary charm in Periamet, Chennai.",
   },
   {
     name: "Liza GRANDE",
@@ -423,8 +423,19 @@ function Index() {
       </section>
 
       {/* Featured rooms */}
-      <section className="bg-forest px-6 py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl">
+      <section className="relative overflow-hidden bg-forest px-6 py-20 lg:py-24">
+        {/* Brand Pattern Background Texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "url('/brand-pattern.webp')",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+            mixBlendMode: "overlay",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-7xl">
           <Eyebrow className="text-gold">Featured Rooms</Eyebrow>
           <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
             Rest. Relax. Reconnect.
@@ -550,8 +561,20 @@ function Index() {
       </section>
 
       {/* Testimonials */}
-      <section className="bg-forest px-6 py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl">
+      <section className="relative overflow-hidden bg-forest px-6 py-20 lg:py-24">
+        {/* Brand Pattern Background Texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "url('/brand-pattern.webp')",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+            mixBlendMode: "overlay",
+          }}
+        />
+
+        <div className="relative z-10 mx-auto max-w-4xl">
           <div className="flex items-center justify-between gap-4 sm:gap-8">
             <CarouselButton
               label="Previous review"
