@@ -199,7 +199,7 @@ function Index() {
       {/* Hero */}
       <section className="relative flex min-h-[calc(100svh-5rem)] flex-col justify-between overflow-hidden bg-cream">
         {/* Right-Anchored Hero Visual: Fits the full photo without zooming */}
-        <div className="absolute inset-y-0 right-0 w-full overflow-hidden lg:w-[58%] xl:w-[60%]">
+        <div className="absolute inset-y-0 right-0 z-0 w-full overflow-hidden lg:w-[58%] xl:w-[60%]">
           <img
             src={heroLobby}
             alt="Liza Royale reception and lobby lounge"
@@ -387,7 +387,7 @@ function Index() {
       </section>
 
       {/* Hotels */}
-      <section className="bg-cream px-6 py-20 lg:py-24">
+      <section className="bg-cream px-6 py-20 lg:py-24 pattern-cream-section">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Our Hotels</Eyebrow>
           <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
@@ -493,7 +493,7 @@ function Index() {
       </section>
 
       {/* Amenities */}
-      <section className="bg-cream px-6 py-20 lg:py-24">
+      <section className="bg-cream px-6 py-20 lg:py-24 pattern-cream-section">
         <div className="mx-auto max-w-7xl">
           <Eyebrow>Amenities</Eyebrow>
           <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
@@ -515,7 +515,7 @@ function Index() {
 
       {/* Story */}
       <section className="grid lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="bg-cream px-6 py-20 lg:px-16 lg:py-24">
+        <div className="bg-cream px-6 py-20 lg:px-16 lg:py-24 pattern-cream-section">
           <EyebrowLeft>Our Story</EyebrowLeft>
           <h2 className="mt-6 font-serif text-4xl leading-tight text-forest lg:text-5xl">
             Rooted in Culture.

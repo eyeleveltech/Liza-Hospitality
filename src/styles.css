@@ -123,19 +123,6 @@
     min-height: 100vh;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image: url("/brand-pattern.webp");
-    background-repeat: repeat;
-    background-size: 520px auto;
-    opacity: 0.07;
-    mix-blend-mode: multiply;
-  }
-
   h1,
   h2,
   h3,
@@ -147,19 +134,20 @@
 }
 
 @layer utilities {
-  .pattern-cream {
+  .pattern-cream-section {
     position: relative;
+    isolation: isolate;
   }
-  .pattern-cream::before {
+  .pattern-cream-section::before {
     content: "";
     position: absolute;
     inset: 0;
-    pointer-events: none;
     background-image: url("/brand-pattern.webp");
+    background-size: 280px;
     background-repeat: repeat;
-    background-size: 520px auto;
-    opacity: 0.05;
-    mix-blend-mode: multiply;
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
   }
   .form-field-card {
     border: 1px solid color-mix(in oklch, var(--border) 70%, transparent);

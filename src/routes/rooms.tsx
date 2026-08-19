@@ -208,7 +208,7 @@ function RoomsPage() {
       </section>
 
       {/* ── Booking CTA ────────────────────────────────────────────────────── */}
-      <section className="bg-cream px-6 py-20 lg:py-20">
+      <section className="bg-cream px-6 py-20 lg:py-20 pattern-cream-section">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Reserve Your Stay</Eyebrow>
           <h2 className="mt-5 font-serif text-4xl text-forest lg:text-5xl">
@@ -261,7 +261,7 @@ function RoomCard({ room, imageLeft }: { room: RoomData; imageLeft: boolean }) {
       {/* Details half */}
       <div
         className={cn(
-          "flex flex-col justify-center bg-cream px-8 py-14 lg:px-12",
+          "flex flex-col justify-center bg-cream px-8 py-14 lg:px-12 pattern-cream-section",
           !imageLeft && "order-2 lg:order-1",
         )}
       >
