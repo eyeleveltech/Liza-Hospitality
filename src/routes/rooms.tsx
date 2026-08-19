@@ -173,8 +173,19 @@ function RoomsPage() {
       </section>
 
       {/* ── All Rooms Include ──────────────────────────────────────────────── */}
-      <section className="bg-forest px-6 py-20 lg:py-20">
-        <div className="mx-auto max-w-5xl">
+      <section className="relative overflow-hidden bg-forest px-6 py-20 lg:py-20">
+        {/* Brand Pattern Background Texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "url('/brand-pattern.webp')",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+            mixBlendMode: "overlay",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-5xl">
           <Eyebrow>Every Room</Eyebrow>
           <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
             What's Always Included

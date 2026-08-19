@@ -33,14 +33,14 @@ const hotels = [
     img: hotelRoyale,
     city: "Chennai",
     description:
-      "Our flagship property in Egmore, Chennai — where heritage architecture meets contemporary luxury and timeless hospitality.",
+      "Our flagship property in Periamet, Chennai — where heritage architecture meets contemporary luxury and timeless hospitality.",
   },
   {
     name: "Liza REGENCY",
     img: hotelRegency,
     city: "Chennai",
     description:
-      "Situated in T. Nagar, Chennai — where classic comfort meets warm South Indian hospitality and thoughtful service.",
+      "Situated in Periamet, Chennai — where classic comfort meets warm South Indian hospitality and thoughtful service.",
   },
   {
     name: "Liza GRANDE",
@@ -179,8 +179,19 @@ function AboutPage() {
       </section>
 
       {/* ── Stats Bar ────────────────────────────────────────────────────── */}
-      <section ref={statsRef} className="bg-forest py-16">
-        <div className="mx-auto max-w-7xl px-6">
+      <section ref={statsRef} className="relative overflow-hidden bg-forest py-16">
+        {/* Brand Pattern Background Texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "url('/brand-pattern.webp')",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+            mixBlendMode: "overlay",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
             {stats.map((stat, i) => (
               <div
@@ -254,8 +265,19 @@ function AboutPage() {
       </section>
 
       {/* ── Our Values ───────────────────────────────────────────────────── */}
-      <section className="bg-forest py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative overflow-hidden bg-forest py-20 lg:py-24">
+        {/* Brand Pattern Background Texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: "url('/brand-pattern.webp')",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+            mixBlendMode: "overlay",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="text-center">
             <Eyebrow>Our Promise</Eyebrow>
             <h2 className="mt-5 font-serif text-4xl leading-snug text-cream lg:text-5xl">
