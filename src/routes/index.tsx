@@ -88,7 +88,7 @@ const hotels = [
   {
     name: "ALTURA by Liza",
     img: hotelAltura,
-    text: "Contemporary elegance in the heart of Anna Salai, Chennai.",
+    text: "Contemporary elegance in the heart of Periamet, Chennai.",
   },
 ];
 

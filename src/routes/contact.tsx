@@ -11,6 +11,7 @@ import {
 import { Eyebrow, Diamond, EyebrowLeft } from "@/components/liza/Divider";
 import { SiteHeader } from "@/components/liza/SiteHeader";
 import { SiteFooter } from "@/components/liza/SiteFooter";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({ meta: [{ title: "Contact Us — Liza Hospitality" }] }),
@@ -61,7 +62,8 @@ const locations = [
     name: "ALTURA by Liza",
     suffix: "ALTURA",
     city: "Chennai",
-    address: "Anna Salai, Chennai – 600002",
+    address:
+      "Raja Muthiah Rd, Periamet, Kannappar Thidal, Poongavanapuram, Chennai, Greater Chennai, Tamil Nadu 600003",
     phone: "+91 44 5678 9012",
     email: "hello.altura@lizahospitality.com",
   },
@@ -132,14 +134,14 @@ function ContactPage() {
         </div>
 
         {/* ── Main Content Grid ────────────────────────────────────────────── */}
-        <div className="mx-auto mt-10 grid w-full max-w-6xl gap-10 lg:grid-cols-[1.2fr_1fr]">
+        <div className="mx-auto mt-10 grid w-full max-w-6xl gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-stretch">
           {/* ── Left: Contact Form ──────────────────────────────────────── */}
-          <div>
+          <div className="flex flex-col">
             <EyebrowLeft>Send a Message</EyebrowLeft>
             <h2 className="mt-3 font-serif text-3xl text-forest">Make an Enquiry</h2>
 
             {submitted ? (
-              <div className="mt-10 flex flex-col items-center gap-4 border border-border/60 bg-card px-8 py-14 text-center">
+              <div className="mt-8 flex flex-1 flex-col items-center justify-center gap-4 border border-border/60 bg-card px-8 py-14 text-center">
                 <CheckCircle className="size-10 text-gold" strokeWidth={1.25} />
                 <p className="font-serif text-xl text-forest">Your message has been sent.</p>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -147,7 +149,7 @@ function ContactPage() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+              <form onSubmit={handleSubmit} className="mt-8 flex flex-1 flex-col space-y-4">
                 {/* Full Name */}
                 <div>
                   <FieldLabel>Full Name</FieldLabel>
@@ -229,23 +231,23 @@ function ContactPage() {
                 </div>
 
                 {/* Message */}
-                <div>
+                <div className="flex flex-1 flex-col">
                   <FieldLabel>Message</FieldLabel>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
+                    rows={4}
                     placeholder="Tell us how we can help…"
-                    className={inputClass}
+                    className={cn(inputClass, "min-h-27.5 flex-1 resize-y")}
                   />
                 </div>
 
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-2.5 bg-terracotta px-8 py-4 text-[0.7rem] tracking-[0.22em] uppercase text-terracotta-foreground transition-opacity hover:opacity-90"
+                  className="flex w-full items-center justify-center gap-2.5 bg-terracotta px-8 py-4 text-[0.7rem] tracking-[0.22em] uppercase text-terracotta-foreground transition-opacity hover:opacity-90 cursor-pointer"
                 >
                   <Send className="size-3.5" strokeWidth={1.75} />
                   Send Message
@@ -255,75 +257,77 @@ function ContactPage() {
           </div>
 
           {/* ── Right: Contact Information ──────────────────────────────── */}
-          <div>
+          <div className="flex flex-col">
             <EyebrowLeft>Reach Us Directly</EyebrowLeft>
             <h2 className="mt-3 font-serif text-3xl text-forest">Always at Your Service</h2>
 
-            <div className="mt-8 space-y-7">
-              {/* Address */}
-              <div className="flex items-start gap-4 border-b border-border/40 pb-7">
-                <MapPin className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
-                <div>
-                  <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
-                    Address
-                  </p>
-                  <p className="text-sm leading-relaxed text-forest">
-                    Liza House, Anna Salai, Chennai – 600002, India
-                  </p>
+            <div className="mt-8 flex flex-1 flex-col justify-between">
+              <div className="space-y-4">
+                {/* Address */}
+                <div className="flex items-start gap-4 border-b border-border/40 pb-4">
+                  <MapPin className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
+                  <div>
+                    <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
+                      Address
+                    </p>
+                    <p className="text-sm leading-relaxed text-forest">
+                      Liza House, Anna Salai, Chennai – 600002, India
+                    </p>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="flex items-start gap-4 border-b border-border/40 pb-4">
+                  <Phone className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
+                  <div>
+                    <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
+                      Phone
+                    </p>
+                    <p className="text-sm text-forest">+91 44 4567 8900</p>
+                    <p className="mt-0.5 text-sm text-forest">
+                      +91 44 4567 8901 <span className="text-muted-foreground">(Reservations)</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="flex items-start gap-4 border-b border-border/40 pb-4">
+                  <Mail className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
+                  <div>
+                    <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
+                      Email
+                    </p>
+                    <p className="text-sm text-forest">hello@lizahospitality.com</p>
+                    <p className="mt-0.5 text-sm text-forest">reservations@lizahospitality.com</p>
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div className="flex items-start gap-4">
+                  <Clock className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
+                  <div>
+                    <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
+                      Hours
+                    </p>
+                    <p className="text-sm text-forest">Front Desk: 24 Hours / 7 Days</p>
+                    <p className="mt-0.5 text-sm text-forest">Reservations: 7:00 AM – 10:00 PM</p>
+                  </div>
                 </div>
               </div>
 
-              {/* Phone */}
-              <div className="flex items-start gap-4 border-b border-border/40 pb-7">
-                <Phone className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
-                <div>
-                  <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
-                    Phone
-                  </p>
-                  <p className="text-sm text-forest">+91 44 4567 8900</p>
-                  <p className="mt-0.5 text-sm text-forest">
-                    +91 44 4567 8901 <span className="text-muted-foreground">(Reservations)</span>
-                  </p>
+              {/* Response Commitment Box */}
+              <div className="mt-6 bg-forest p-6 sm:p-7">
+                <h3 className="font-serif text-xl text-cream">Response Time Commitment</h3>
+                <div className="my-3 flex max-w-56 items-center gap-3">
+                  <span className="h-px flex-1 bg-gold/70" />
+                  <span className="size-1.5 rotate-45 bg-gold" />
+                  <span className="h-px flex-1 bg-gold/70" />
                 </div>
+                <p className="text-sm leading-relaxed text-cream/80">
+                  Our reservations and guest relations team is dedicated to responding to all
+                  enquiries within 24 hours. For urgent requests, please call us directly.
+                </p>
               </div>
-
-              {/* Email */}
-              <div className="flex items-start gap-4 border-b border-border/40 pb-7">
-                <Mail className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
-                <div>
-                  <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
-                    Email
-                  </p>
-                  <p className="text-sm text-forest">hello@lizahospitality.com</p>
-                  <p className="mt-0.5 text-sm text-forest">reservations@lizahospitality.com</p>
-                </div>
-              </div>
-
-              {/* Hours */}
-              <div className="flex items-start gap-4">
-                <Clock className="mt-0.5 size-5 shrink-0 text-gold" strokeWidth={1.5} />
-                <div>
-                  <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
-                    Hours
-                  </p>
-                  <p className="text-sm text-forest">Front Desk: 24 Hours / 7 Days</p>
-                  <p className="mt-0.5 text-sm text-forest">Reservations: 7:00 AM – 10:00 PM</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Response Commitment Box */}
-            <div className="mt-8 bg-forest p-6">
-              <h3 className="font-serif text-xl text-cream">Response Time Commitment</h3>
-              <div className="mt-4 flex max-w-58 items-center gap-4">
-                <span className="h-px flex-1 bg-gold/70" />
-                <span className="size-1.5 rotate-45 bg-gold" />
-                <span className="h-px flex-1 bg-gold/70" />
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-cream/80">
-                Our reservations and guest relations team is dedicated to responding to all
-                enquiries within 24 hours. For urgent requests, please call us directly.
-              </p>
             </div>
           </div>
         </div>
