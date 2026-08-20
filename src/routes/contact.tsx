@@ -60,7 +60,7 @@ const locations = [
     email: "hello.grande@lizahospitality.com",
   },
   {
-    name: "ALTURA by Liza",
+    name: "Liza ALTURA",
     suffix: "ALTURA",
     city: "Chennai",
     address:
@@ -112,13 +112,13 @@ function ContactPage() {
       <SiteHeader />
 
       {/* ── Contact Hero & Interaction Fold ──────────────────────────────── */}
-      <section className="flex min-h-[calc(100svh-5rem)] flex-col justify-center bg-cream px-6 py-12 lg:py-16 pattern-cream-section">
+      <section className="flex min-h-[calc(100svh-5rem)] flex-col justify-center bg-cream px-6 py-12 sm:py-16 pattern-cream-section">
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Get in Touch</Eyebrow>
-          <h1 className="mt-4 font-serif text-4xl leading-[1.1] text-forest sm:text-5xl lg:text-6xl animate-hero-title">
+          <h1 className="mt-4 font-serif text-3xl leading-[1.1] text-forest sm:text-5xl lg:text-6xl animate-hero-title">
             We'd Love to Hear From You
           </h1>
-          <p className="mx-auto mt-3 max-w-md text-center text-sm leading-relaxed text-muted-foreground animate-hero-sub">
+          <p className="mx-auto mt-3 max-w-md text-center text-xs sm:text-sm leading-relaxed text-muted-foreground animate-hero-sub">
             Whether you're planning a stay, hosting an event or simply have a question — our team
             responds within 24 hours.
           </p>
@@ -132,14 +132,14 @@ function ContactPage() {
         </div>
 
         {/* ── Main Content Grid ────────────────────────────────────────────── */}
-        <div className="mx-auto mt-10 grid w-full max-w-6xl gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-stretch">
+        <div className="mx-auto mt-10 grid w-full max-w-6xl gap-10 sm:gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-stretch">
           {/* ── Left: Contact Form ──────────────────────────────────────── */}
           <ScrollReveal variant="fade-up" className="flex flex-col">
             <EyebrowLeft>Send a Message</EyebrowLeft>
-            <h2 className="mt-3 font-serif text-3xl text-forest">Make an Enquiry</h2>
+            <h2 className="mt-3 font-serif text-2xl sm:text-3xl text-forest">Make an Enquiry</h2>
 
             {submitted ? (
-              <div className="mt-8 flex flex-1 flex-col items-center justify-center gap-4 border border-border/60 bg-card px-8 py-14 text-center animate-hero-title">
+              <div className="mt-6 sm:mt-8 flex flex-1 flex-col items-center justify-center gap-4 border border-border/60 bg-card px-6 sm:px-8 py-12 sm:py-14 text-center animate-hero-title">
                 <CheckCircle className="size-10 text-gold" strokeWidth={1.25} />
                 <p className="font-serif text-xl text-forest">Your message has been sent.</p>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -147,7 +147,7 @@ function ContactPage() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-8 flex flex-1 flex-col space-y-4">
+              <form onSubmit={handleSubmit} className="mt-6 sm:mt-8 flex flex-1 flex-col space-y-4">
                 {/* Full Name */}
                 <div>
                   <FieldLabel>Full Name</FieldLabel>
@@ -203,7 +203,7 @@ function ContactPage() {
                         <SelectItem value="royale">Liza ROYALE, Chennai</SelectItem>
                         <SelectItem value="regency">Liza REGENCY, Chennai</SelectItem>
                         <SelectItem value="grande">Liza GRANDE, Chennai</SelectItem>
-                        <SelectItem value="altura">ALTURA by Liza, Chennai</SelectItem>
+                        <SelectItem value="altura">Liza ALTURA, Chennai</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -224,25 +224,25 @@ function ContactPage() {
 
                 {/* Message */}
                 <div className="flex flex-1 flex-col">
-                  <FieldLabel>Your Message</FieldLabel>
+                  <FieldLabel>Message</FieldLabel>
                   <textarea
                     name="message"
+                    rows={4}
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={4}
-                    placeholder="Tell us about your requirements, dates or special requests..."
-                    className={cn(inputClass, "min-h-27.5 resize-none")}
+                    placeholder="Tell us how we can make your stay unforgettable..."
+                    className={cn(inputClass, "min-h-28 flex-1 resize-none")}
                   />
                 </div>
 
-                {/* Submit */}
+                {/* Submit CTA */}
                 <button
                   type="submit"
-                  className="btn-shimmer flex w-full items-center justify-center gap-2.5 bg-terracotta px-8 py-4 text-[0.7rem] tracking-[0.22em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-lg cursor-pointer"
+                  className="btn-shimmer flex w-full items-center justify-center gap-2 bg-forest py-3.5 sm:py-4 text-xs font-medium tracking-[0.24em] uppercase text-cream transition-all duration-300 hover:bg-forest/90 hover:shadow-lg cursor-pointer"
                 >
                   <Send className="size-3.5" strokeWidth={1.75} />
-                  Send Message
+                  <span>Send Message</span>
                 </button>
               </form>
             )}
@@ -251,9 +251,11 @@ function ContactPage() {
           {/* ── Right: Contact Information ──────────────────────────────── */}
           <ScrollReveal variant="fade-up" delay={200} className="flex flex-col">
             <EyebrowLeft>Reach Us Directly</EyebrowLeft>
-            <h2 className="mt-3 font-serif text-3xl text-forest">Always at Your Service</h2>
+            <h2 className="mt-3 font-serif text-2xl sm:text-3xl text-forest">
+              Always at Your Service
+            </h2>
 
-            <div className="mt-8 flex flex-1 flex-col justify-between">
+            <div className="mt-6 sm:mt-8 flex flex-1 flex-col justify-between">
               <div className="space-y-4">
                 {/* Address */}
                 <div className="flex items-start gap-4 border-b border-border/40 pb-4">
@@ -262,7 +264,7 @@ function ContactPage() {
                     <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
                       Address
                     </p>
-                    <p className="text-sm leading-relaxed text-forest">
+                    <p className="text-xs sm:text-sm leading-relaxed text-forest">
                       Liza House, Anna Salai, Chennai – 600002, India
                     </p>
                   </div>
@@ -275,8 +277,8 @@ function ContactPage() {
                     <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
                       Phone
                     </p>
-                    <p className="text-sm text-forest">+91 44 4567 8900</p>
-                    <p className="mt-0.5 text-sm text-forest">
+                    <p className="text-xs sm:text-sm text-forest">+91 44 4567 8900</p>
+                    <p className="mt-0.5 text-xs sm:text-sm text-forest">
                       +91 44 4567 8901 <span className="text-muted-foreground">(Reservations)</span>
                     </p>
                   </div>
@@ -289,8 +291,10 @@ function ContactPage() {
                     <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
                       Email
                     </p>
-                    <p className="text-sm text-forest">hello@lizahospitality.com</p>
-                    <p className="mt-0.5 text-sm text-forest">reservations@lizahospitality.com</p>
+                    <p className="text-xs sm:text-sm text-forest">hello@lizahospitality.com</p>
+                    <p className="mt-0.5 text-xs sm:text-sm text-forest">
+                      reservations@lizahospitality.com
+                    </p>
                   </div>
                 </div>
 
@@ -301,21 +305,25 @@ function ContactPage() {
                     <p className="mb-1 text-[0.65rem] tracking-[0.18em] uppercase text-terracotta">
                       Hours
                     </p>
-                    <p className="text-sm text-forest">Front Desk: 24 Hours / 7 Days</p>
-                    <p className="mt-0.5 text-sm text-forest">Reservations: 7:00 AM – 10:00 PM</p>
+                    <p className="text-xs sm:text-sm text-forest">Front Desk: 24 Hours / 7 Days</p>
+                    <p className="mt-0.5 text-xs sm:text-sm text-forest">
+                      Reservations: 7:00 AM – 10:00 PM
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Response Commitment Box */}
               <div className="mt-6 bg-forest p-6 sm:p-7">
-                <h3 className="font-serif text-xl text-cream">Response Time Commitment</h3>
+                <h3 className="font-serif text-lg sm:text-xl text-cream">
+                  Response Time Commitment
+                </h3>
                 <div className="my-3 flex max-w-56 items-center gap-3">
                   <span className="h-px flex-1 bg-gold/70" />
                   <span className="size-1.5 rotate-45 bg-gold" />
                   <span className="h-px flex-1 bg-gold/70" />
                 </div>
-                <p className="text-sm leading-relaxed text-cream/80">
+                <p className="text-xs sm:text-sm leading-relaxed text-cream/80">
                   Our reservations and guest relations team is dedicated to responding to all
                   enquiries within 24 hours. For urgent requests, please call us directly.
                 </p>
@@ -326,7 +334,7 @@ function ContactPage() {
       </section>
 
       {/* ── Hotel Locations ───────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-forest py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-forest py-16 sm:py-20 lg:py-24">
         {/* Brand Pattern Background Texture */}
         <div
           aria-hidden="true"
@@ -343,24 +351,25 @@ function ContactPage() {
           <ScrollReveal variant="fade-up">
             <div className="text-center">
               <Eyebrow>Our Properties</Eyebrow>
-              <h2 className="mt-5 font-serif text-4xl text-cream lg:text-5xl">
+              <h2 className="mt-4 sm:mt-5 font-serif text-3xl sm:text-4xl text-cream lg:text-5xl">
                 Find Your Nearest Liza
               </h2>
-              <br />
-              <Diamond />
+              <div className="mt-6 flex justify-center">
+                <Diamond />
+              </div>
             </div>
           </ScrollReveal>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2">
+          <div className="mt-10 sm:mt-14 grid gap-6 sm:grid-cols-2">
             {locations.map((loc, i) => (
               <ScrollReveal key={loc.name} variant="fade-up" delay={i * 100} className="h-full">
                 <div
-                  className="h-full flex flex-col border border-cream/10 p-8 transition-all duration-300 hover:border-gold/40 hover:-translate-y-1"
+                  className="h-full flex flex-col border border-cream/10 p-6 sm:p-8 transition-all duration-300 hover:border-gold/40 hover:-translate-y-1"
                   style={{ backgroundColor: "oklch(0.28 0.03 167)" }}
                 >
                   {/* Name & City */}
                   <div>
-                    <p className="font-serif text-2xl leading-tight">
+                    <p className="font-serif text-xl sm:text-2xl leading-tight">
                       <span className="text-gold">LIZA</span>{" "}
                       <span className="text-cream">{loc.suffix}</span>
                     </p>
@@ -370,7 +379,7 @@ function ContactPage() {
                   </div>
 
                   {/* Details */}
-                  <div className="mt-6 space-y-2.5">
+                  <div className="mt-5 sm:mt-6 space-y-2.5">
                     <p className="flex items-start gap-2.5 text-xs text-cream/70">
                       <span className="mt-1 size-1 shrink-0 rotate-45 bg-gold" />
                       <span className="leading-relaxed">{loc.address}</span>

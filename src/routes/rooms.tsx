@@ -142,12 +142,12 @@ function RoomsPage() {
         {/* Text block */}
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 lg:px-16">
           <EyebrowLeft>Rooms &amp; Suites</EyebrowLeft>
-          <h1 className="mt-5 font-serif text-5xl leading-[1.08] text-cream lg:text-[4rem] animate-hero-title">
+          <h1 className="mt-5 font-serif text-4xl sm:text-5xl leading-[1.08] text-cream lg:text-[4rem] animate-hero-title">
             Rest. Relax.
             <br />
             Reconnect.
           </h1>
-          <p className="mt-4 font-sans font-light italic text-cream/80 text-lg lg:text-xl animate-hero-sub">
+          <p className="mt-4 font-sans font-light italic text-cream/80 text-base sm:text-lg lg:text-xl animate-hero-sub">
             Three carefully curated stays, designed around you.
           </p>
           <div className="mt-6 animate-hero-divider">
@@ -170,7 +170,7 @@ function RoomsPage() {
       </section>
 
       {/* ── All Rooms Include ──────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-forest px-6 py-20 lg:py-20">
+      <section className="relative overflow-hidden bg-forest px-6 py-16 lg:py-20">
         {/* Brand Pattern Background Texture */}
         <div
           aria-hidden="true"
@@ -186,51 +186,55 @@ function RoomsPage() {
         <div className="relative z-10 mx-auto max-w-5xl">
           <ScrollReveal variant="fade-up">
             <Eyebrow>Every Room</Eyebrow>
-            <h2 className="mt-5 text-center font-serif text-4xl text-cream lg:text-5xl">
+            <h2 className="mt-4 sm:mt-5 text-center font-serif text-3xl sm:text-4xl text-cream lg:text-5xl">
               What's Always Included
             </h2>
+            <div className="mt-6 flex justify-center">
+              <Diamond />
+            </div>
           </ScrollReveal>
-          <div className="mt-14 grid grid-cols-2 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
-            {includedAmenities.map(({ label, Icon }, i) => (
-              <ScrollReveal key={label} variant="fade-up" delay={i * 80}>
-                <div
-                  className={[
-                    "flex flex-col items-center gap-3 px-4 text-center group",
-                    i !== includedAmenities.length - 1 ? "lg:border-r lg:border-cream/15" : "",
-                  ].join(" ")}
-                >
-                  <Icon className="size-16 text-gold transition-transform duration-300 group-hover:scale-110" />
-                  <span className="text-xs leading-snug tracking-wide text-cream/80 group-hover:text-cream transition-colors">
-                    {label}
-                  </span>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="mt-10 sm:mt-12 grid grid-cols-2 gap-y-8 gap-x-6 sm:grid-cols-3 lg:grid-cols-6">
+            {includedAmenities.map((amenity, i) => {
+              const Icon = amenity.Icon;
+              return (
+                <ScrollReveal key={amenity.label} variant="fade-up" delay={i * 50}>
+                  <div
+                    className={cn(
+                      "group flex flex-col items-center gap-2.5 sm:gap-3 px-2 text-center",
+                      i !== includedAmenities.length - 1 && "lg:border-r lg:border-cream/15",
+                    )}
+                  >
+                    <Icon className="size-11 sm:size-12 lg:size-14 text-gold transition-transform duration-300 group-hover:scale-110" />
+                    <span className="text-xs font-medium tracking-wide text-cream/80 transition-colors group-hover:text-cream">
+                      {amenity.label}
+                    </span>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── Booking CTA ────────────────────────────────────────────────────── */}
-      <section className="bg-cream px-6 py-20 lg:py-20 pattern-cream-section">
-        <div className="mx-auto max-w-2xl text-center">
+      {/* ── Bottom Booking CTA ──────────────────────────────────────────────── */}
+      <section className="bg-cream py-16 sm:py-20 lg:py-24 pattern-cream-section">
+        <div className="mx-auto max-w-4xl px-6 text-center">
           <ScrollReveal variant="fade-up">
-            <Eyebrow>Reserve Your Stay</Eyebrow>
-            <h2 className="mt-5 font-serif text-4xl text-forest lg:text-5xl">
-              Experience Liza.
-              <br />
+            <Eyebrow>Ready to Stay?</Eyebrow>
+            <h2 className="mt-4 sm:mt-5 font-serif text-3xl sm:text-4xl text-forest lg:text-5xl">
               Choose Your Room.
             </h2>
-            <div className="my-7">
+            <div className="my-6 sm:my-7">
               <Diamond />
             </div>
-            <p className="mx-auto max-w-md text-sm leading-relaxed text-muted-foreground">
+            <p className="mx-auto max-w-md text-xs sm:text-sm leading-relaxed text-muted-foreground">
               Whether you're here for business or leisure, every Liza stay is crafted to feel
               personal. Select your room and let us take care of the rest.
             </p>
-            <div className="mt-10">
+            <div className="mt-8 sm:mt-10">
               <Link
                 to="/contact"
-                className="btn-shimmer inline-block bg-terracotta px-12 py-4 text-[0.7rem] tracking-[0.24em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-xl"
+                className="btn-shimmer inline-block bg-terracotta px-10 sm:px-12 py-3.5 sm:py-4 text-[0.7rem] tracking-[0.24em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-xl cursor-pointer"
               >
                 Book Now
               </Link>
@@ -250,9 +254,14 @@ function RoomsPage() {
 
 function RoomCard({ room, imageLeft }: { room: RoomData; imageLeft: boolean }) {
   return (
-    <article className="grid lg:grid-cols-2" style={{ minHeight: "500px" }}>
+    <article className="grid min-h-auto lg:min-h-125 lg:grid-cols-2">
       {/* Image half */}
-      <div className={cn("relative min-h-80 lg:min-h-0", !imageLeft && "order-1 lg:order-2")}>
+      <div
+        className={cn(
+          "relative min-h-72 sm:min-h-80 lg:min-h-0",
+          !imageLeft && "order-1 lg:order-2",
+        )}
+      >
         <img
           src={room.img}
           alt={room.imgAlt}
@@ -266,37 +275,41 @@ function RoomCard({ room, imageLeft }: { room: RoomData; imageLeft: boolean }) {
       {/* Details half */}
       <div
         className={cn(
-          "flex flex-col justify-center bg-cream px-8 py-14 lg:px-12 pattern-cream-section",
+          "flex flex-col justify-center bg-cream px-6 py-10 sm:px-8 sm:py-14 lg:px-12 pattern-cream-section",
           !imageLeft && "order-2 lg:order-1",
         )}
       >
         <EyebrowLeft>{`From ${room.price} / night`}</EyebrowLeft>
 
-        <h2 className="mt-4 font-serif text-4xl text-forest lg:text-[2.6rem]">{room.name}</h2>
+        <h2 className="mt-3 sm:mt-4 font-serif text-3xl sm:text-4xl text-forest lg:text-[2.6rem]">
+          {room.name}
+        </h2>
 
         {/* Stat chips */}
-        <div className="mt-5 flex flex-wrap gap-2">
-          <span className="flex items-center gap-1.5 border border-border/60 px-3 py-1.5 text-xs text-forest/80">
+        <div className="mt-4 sm:mt-5 flex flex-wrap gap-2">
+          <span className="flex items-center gap-1.5 border border-border/60 px-2.5 sm:px-3 py-1.5 text-xs text-forest/80">
             <Maximize className="size-3.5 text-gold" strokeWidth={1.5} />
             {room.size}
           </span>
-          <span className="flex items-center gap-1.5 border border-border/60 px-3 py-1.5 text-xs text-forest/80">
+          <span className="flex items-center gap-1.5 border border-border/60 px-2.5 sm:px-3 py-1.5 text-xs text-forest/80">
             <IconRooms className="size-3.5 text-gold" strokeWidth={1.5} />
             {room.guests}
           </span>
-          <span className="flex items-center gap-1.5 border border-border/60 px-3 py-1.5 text-xs text-forest/80">
+          <span className="flex items-center gap-1.5 border border-border/60 px-2.5 sm:px-3 py-1.5 text-xs text-forest/80">
             <Eye className="size-3.5 text-gold" strokeWidth={1.5} />
             {room.view}
           </span>
         </div>
 
         {/* Description */}
-        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{room.description}</p>
+        <p className="mt-5 sm:mt-6 text-xs sm:text-sm leading-relaxed text-muted-foreground">
+          {room.description}
+        </p>
 
         {/* Amenities */}
-        <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+        <ul className="mt-5 sm:mt-6 grid gap-2 sm:grid-cols-2">
           {room.amenities.map((a) => (
-            <li key={a} className="flex items-start gap-2 text-sm text-muted-foreground">
+            <li key={a} className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground">
               <Check className="mt-0.5 size-3.5 shrink-0 text-terracotta" strokeWidth={2.5} />
               {a}
             </li>

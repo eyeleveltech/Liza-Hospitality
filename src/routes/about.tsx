@@ -51,7 +51,7 @@ const hotels = [
       "A serene retreat in Nungambakkam, Chennai — thoughtful, spacious, and crafted for modern travellers seeking refined calm.",
   },
   {
-    name: "ALTURA by Liza",
+    name: "Liza ALTURA",
     img: hotelAltura,
     city: "Chennai",
     description:
@@ -110,14 +110,14 @@ function AboutPage() {
               "linear-gradient(to right, #FFF6E4 0%, #FFF6E4 35%, rgba(255,246,228,0.7) 55%, transparent 72%)",
           }}
         />
-        <div className="relative z-10 flex max-w-2xl flex-col justify-center px-8 py-16 lg:px-20">
+        <div className="relative z-10 flex max-w-2xl flex-col justify-center px-6 py-16 sm:px-8 lg:px-20">
           <EyebrowLeft>Our Story</EyebrowLeft>
-          <h1 className="mt-5 font-serif text-5xl leading-tight text-forest sm:text-6xl lg:text-[76px] animate-hero-title">
+          <h1 className="mt-4 sm:mt-5 font-serif text-4xl leading-tight text-forest sm:text-6xl lg:text-[76px] animate-hero-title">
             Modern Heritage.
             <br />
             Timeless Stays.
           </h1>
-          <p className="mt-4 font-sans font-light italic text-forest/70 text-lg sm:text-xl animate-hero-sub">
+          <p className="mt-4 font-sans font-light italic text-forest/70 text-base sm:text-xl animate-hero-sub">
             Rooted in culture. Crafted for today.
           </p>
           <div className="mt-6 animate-hero-divider">
@@ -131,26 +131,26 @@ function AboutPage() {
       </section>
 
       {/* ── Our Story ────────────────────────────────────────────────────── */}
-      <section className="bg-cream py-20 lg:py-20 pattern-cream-section">
+      <section className="bg-cream py-16 sm:py-20 pattern-cream-section">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
+          <div className="grid items-center gap-12 sm:gap-16 lg:grid-cols-2">
             {/* Left — narrative */}
             <ScrollReveal variant="fade-up">
               <EyebrowLeft>Heritage Since 1987</EyebrowLeft>
-              <h2 className="mt-5 font-serif text-4xl leading-snug text-forest lg:text-5xl">
+              <h2 className="mt-4 sm:mt-5 font-serif text-3xl sm:text-4xl leading-snug text-forest lg:text-5xl">
                 A Legacy Built on Warmth
               </h2>
-              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-5 sm:mt-6 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 Founded in 1987 by the Malhotra family, Liza Hospitality began with a single
                 promise: that every guest should feel at home, no matter how far from home they
                 were.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 What started as a 42-room property in Chennai has grown into four iconic hotels
                 across the city's premier hubs — each one carrying the warmth, craft and cultural
                 integrity that has defined Liza from its very first day.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 Today, Liza Hospitality is more than a hotel group. It is a living expression of
                 India's heritage — reimagined with contemporary elegance, and delivered through
                 intuitive, sincere hospitality.
@@ -161,18 +161,18 @@ function AboutPage() {
             <ScrollReveal variant="fade-up" delay={200}>
               <div className="flex flex-col items-center text-center">
                 <Diamond />
-                <blockquote className="mt-8 px-4">
-                  <p className="font-sans text-xl italic leading-relaxed text-forest font-light">
+                <blockquote className="mt-6 sm:mt-8 px-2 sm:px-4">
+                  <p className="font-sans text-lg sm:text-xl italic leading-relaxed text-forest font-light">
                     "Hospitality is not a service. It is the art of making someone feel they truly
                     belong."
                   </p>
-                  <footer className="mt-6">
+                  <footer className="mt-5 sm:mt-6">
                     <span className="text-[0.7rem] font-medium tracking-[0.28em] uppercase text-gold">
                       Arjun Malhotra, Founder
                     </span>
                   </footer>
                 </blockquote>
-                <div className="mt-8">
+                <div className="mt-6 sm:mt-8">
                   <Diamond />
                 </div>
               </div>
@@ -182,7 +182,7 @@ function AboutPage() {
       </section>
 
       {/* ── Stats Bar ────────────────────────────────────────────────────── */}
-      <section ref={statsRef} className="relative overflow-hidden bg-forest py-16">
+      <section ref={statsRef} className="relative overflow-hidden bg-forest py-14 sm:py-16">
         {/* Brand Pattern Background Texture */}
         <div
           aria-hidden="true"
@@ -196,12 +196,12 @@ function AboutPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-2 gap-y-12 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-y-10 sm:gap-y-12 lg:grid-cols-4">
             {stats.map((stat, i) => (
               <ScrollReveal key={stat.label} variant="fade-up" delay={i * 100}>
                 <div
                   className={cn(
-                    "flex flex-col items-center text-center",
+                    "flex flex-col items-center text-center px-2",
                     i % 2 === 0
                       ? "border-r border-cream/20"
                       : i < stats.length - 1
@@ -209,7 +209,7 @@ function AboutPage() {
                         : "",
                   )}
                 >
-                  <span className="font-sans text-5xl font-semibold tracking-tight text-gold">
+                  <span className="font-sans text-4xl sm:text-5xl font-semibold tracking-tight text-gold">
                     <AnimatedCounter
                       value={stat.value}
                       suffix={stat.suffix}
@@ -218,7 +218,7 @@ function AboutPage() {
                       duration={1800}
                     />
                   </span>
-                  <span className="mt-2 text-xs uppercase tracking-[0.22em] text-cream/70">
+                  <span className="mt-2 text-[0.65rem] sm:text-xs uppercase tracking-[0.22em] text-cream/70">
                     {stat.label}
                   </span>
                 </div>
