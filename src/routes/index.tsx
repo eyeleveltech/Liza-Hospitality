@@ -322,12 +322,12 @@ function Index() {
             </div>
             <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_auto]">
               {/* Hotel Dropdown */}
-              <div>
-                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+              <div className="flex flex-col justify-end">
+                <label className="mb-1.5 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
                   Select Hotel
                 </label>
                 <Select value={hotel} onValueChange={setHotel}>
-                  <SelectTrigger className="form-field-card w-full bg-card px-4 py-3 text-xs text-forest focus:ring-0">
+                  <SelectTrigger className="form-field-card flex h-11 w-full items-center justify-between rounded-none bg-card px-4 text-xs text-forest focus:ring-0">
                     <SelectValue placeholder="Choose a property" />
                   </SelectTrigger>
                   <SelectContent>
@@ -340,15 +340,15 @@ function Index() {
               </div>
 
               {/* Check-in */}
-              <div>
-                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+              <div className="flex flex-col justify-end">
+                <label className="mb-1.5 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
                   Check-in
                 </label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <button
                       type="button"
-                      className="form-field-card flex w-full items-center justify-between bg-card px-4 py-3 text-left text-xs text-forest cursor-pointer hover:bg-card/80"
+                      className="form-field-card flex h-11 w-full items-center justify-between rounded-none bg-card px-4 text-left text-xs text-forest cursor-pointer hover:bg-card/80 focus:outline-none"
                     >
                       <span className={checkIn ? "text-forest" : "text-muted-foreground"}>
                         {checkIn ? format(checkIn, "dd MMM yyyy") : "Select date"}
@@ -377,15 +377,15 @@ function Index() {
               </div>
 
               {/* Check-out */}
-              <div>
-                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+              <div className="flex flex-col justify-end">
+                <label className="mb-1.5 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
                   Check-out
                 </label>
                 <Popover>
                   <PopoverTrigger asChild>
                     <button
                       type="button"
-                      className="form-field-card flex w-full items-center justify-between bg-card px-4 py-3 text-left text-xs text-forest cursor-pointer hover:bg-card/80"
+                      className="form-field-card flex h-11 w-full items-center justify-between rounded-none bg-card px-4 text-left text-xs text-forest cursor-pointer hover:bg-card/80 focus:outline-none"
                     >
                       <span className={checkOut ? "text-forest" : "text-muted-foreground"}>
                         {checkOut ? format(checkOut, "dd MMM yyyy") : "Select date"}
@@ -415,12 +415,12 @@ function Index() {
               </div>
 
               {/* Guests */}
-              <div>
-                <label className="mb-1 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
+              <div className="flex flex-col justify-end">
+                <label className="mb-1.5 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
                   Guests
                 </label>
                 <Select value={guests} onValueChange={setGuests}>
-                  <SelectTrigger className="form-field-card w-full bg-card px-4 py-3 text-xs text-forest focus:ring-0">
+                  <SelectTrigger className="form-field-card flex h-11 w-full items-center justify-between rounded-none bg-card px-4 text-xs text-forest focus:ring-0">
                     <SelectValue placeholder="Guests" />
                   </SelectTrigger>
                   <SelectContent>
@@ -433,10 +433,10 @@ function Index() {
               </div>
 
               {/* Submit */}
-              <div className="flex items-end">
+              <div className="flex flex-col justify-end">
                 <button
                   type="submit"
-                  className="btn-shimmer flex w-full items-center justify-center gap-2 bg-terracotta px-7 py-3 text-xs tracking-[0.22em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-lg cursor-pointer"
+                  className="btn-shimmer flex h-11 w-full items-center justify-center gap-2 rounded-none bg-terracotta px-7 text-xs tracking-[0.22em] uppercase text-terracotta-foreground transition-all duration-300 hover:opacity-95 hover:shadow-lg cursor-pointer"
                 >
                   <span>Search</span>
                   <ChevronDown className="size-3 -rotate-90" />
@@ -496,6 +496,7 @@ function Index() {
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: "url('/brand-pattern.webp')",
+            backgroundSize: "280px",
             backgroundRepeat: "repeat",
             backgroundBlendMode: "overlay",
             mixBlendMode: "overlay",
@@ -655,6 +656,7 @@ function Index() {
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: "url('/brand-pattern.webp')",
+            backgroundSize: "280px",
             backgroundRepeat: "repeat",
             backgroundBlendMode: "overlay",
             mixBlendMode: "overlay",

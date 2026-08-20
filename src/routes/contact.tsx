@@ -333,6 +333,7 @@ function ContactPage() {
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: "url('/brand-pattern.webp')",
+            backgroundSize: "280px",
             backgroundRepeat: "repeat",
             backgroundBlendMode: "overlay",
             mixBlendMode: "overlay",
@@ -352,35 +353,35 @@ function ContactPage() {
 
           <div className="mt-14 grid gap-6 sm:grid-cols-2">
             {locations.map((loc, i) => (
-              <ScrollReveal key={loc.name} variant="fade-up" delay={i * 100}>
+              <ScrollReveal key={loc.name} variant="fade-up" delay={i * 100} className="h-full">
                 <div
-                  className="border border-cream/10 p-8 transition-all duration-300 hover:border-gold/40 hover:-translate-y-1"
+                  className="h-full flex flex-col border border-cream/10 p-8 transition-all duration-300 hover:border-gold/40 hover:-translate-y-1"
                   style={{ backgroundColor: "oklch(0.28 0.03 167)" }}
                 >
-                  {/* Name */}
-                  <p className="font-serif text-2xl leading-tight">
-                    <span className="text-gold">LIZA</span>{" "}
-                    <span className="text-cream">{loc.suffix}</span>
-                  </p>
-
-                  {/* City */}
-                  <p className="mt-2 text-xs tracking-[0.2em] uppercase text-terracotta">
-                    {loc.city}
-                  </p>
+                  {/* Name & City */}
+                  <div>
+                    <p className="font-serif text-2xl leading-tight">
+                      <span className="text-gold">LIZA</span>{" "}
+                      <span className="text-cream">{loc.suffix}</span>
+                    </p>
+                    <p className="mt-2 text-xs tracking-[0.2em] uppercase text-terracotta">
+                      {loc.city}
+                    </p>
+                  </div>
 
                   {/* Details */}
-                  <div className="mt-5 space-y-2">
-                    <p className="flex items-start gap-2 text-xs text-cream/70">
-                      <span className="mt-1.5 size-1 shrink-0 rotate-45 bg-gold" />
-                      {loc.address}
+                  <div className="mt-6 space-y-2.5">
+                    <p className="flex items-start gap-2.5 text-xs text-cream/70">
+                      <span className="mt-1 size-1 shrink-0 rotate-45 bg-gold" />
+                      <span className="leading-relaxed">{loc.address}</span>
                     </p>
-                    <p className="flex items-start gap-2 text-xs text-cream/70">
-                      <span className="mt-1.5 size-1 shrink-0 rotate-45 bg-gold" />
-                      {loc.phone}
+                    <p className="flex items-center gap-2.5 text-xs text-cream/70">
+                      <span className="size-1 shrink-0 rotate-45 bg-gold" />
+                      <span>{loc.phone}</span>
                     </p>
-                    <p className="flex items-start gap-2 text-xs text-cream/70">
-                      <span className="mt-1.5 size-1 shrink-0 rotate-45 bg-gold" />
-                      {loc.email}
+                    <p className="flex items-center gap-2.5 text-xs text-cream/70">
+                      <span className="size-1 shrink-0 rotate-45 bg-gold" />
+                      <span>{loc.email}</span>
                     </p>
                   </div>
                 </div>
