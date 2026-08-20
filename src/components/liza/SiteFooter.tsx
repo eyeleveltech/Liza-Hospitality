@@ -10,7 +10,7 @@ const navItems = [
   { label: "Contact", to: "/contact" },
 ] as const;
 
-const hotels = ["Liza ROYALE", "Liza REGENCY", "Liza GRANDE", "ALTURA by Liza"];
+const hotels = ["Liza ROYALE", "Liza REGENCY", "Liza GRANDE", "Liza ALTURA"];
 
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (

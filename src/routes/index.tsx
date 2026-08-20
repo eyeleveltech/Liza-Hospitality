@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import {
   Calendar,
@@ -88,7 +88,7 @@ const hotels = [
     text: "Nungambakkam, Chennai — Modern poise in Chennai's cultural hub, tailored for discerning leisure and business travellers.",
   },
   {
-    name: "ALTURA by Liza",
+    name: "Liza ALTURA",
     img: hotelAltura,
     text: "Periamet, Chennai — Contemporary architectural elegance, premium suites, and elevated rooftop dining.",
   },
@@ -289,7 +289,7 @@ function Index() {
 
         <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 items-center px-6 pt-10 pb-4 lg:px-16 lg:pt-14 lg:pb-6">
           <div className="max-w-xl">
-            <h1 className="font-serif text-5xl leading-[1.05] text-forest sm:text-6xl lg:text-[76px] animate-hero-title">
+            <h1 className="font-serif text-4xl leading-[1.08] text-forest sm:text-6xl lg:text-[76px] animate-hero-title">
               Experience
               <br />
               Timeless
@@ -310,7 +310,7 @@ function Index() {
         <div className="relative z-20 mx-auto w-full max-w-5xl px-6 pb-6 lg:pb-8 animate-hero-bar">
           <form
             onSubmit={handleBookingSubmit}
-            className="border border-border/40 bg-card p-5 shadow-[0_20px_60px_-20px_rgba(31,56,46,0.4)] sm:p-6 lg:p-7 transition-all duration-300 hover:border-gold/30"
+            className="border border-border/40 bg-card p-4 shadow-[0_20px_60px_-20px_rgba(31,56,46,0.4)] sm:p-6 lg:p-7 transition-all duration-300 hover:border-gold/30"
           >
             <div className="flex items-center justify-between">
               <h2 className="font-serif text-xl sm:text-2xl text-forest">Book Your Stay</h2>
@@ -320,7 +320,7 @@ function Index() {
                 </span>
               )}
             </div>
-            <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_auto]">
+            <div className="mt-4 grid gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_auto]">
               {/* Hotel Dropdown */}
               <div className="flex flex-col justify-end">
                 <label className="mb-1.5 block text-[0.65rem] tracking-[0.2em] uppercase text-muted-foreground">
@@ -334,7 +334,7 @@ function Index() {
                     <SelectItem value="royal">Liza ROYALE – Chennai</SelectItem>
                     <SelectItem value="regency">Liza REGENCY – Chennai</SelectItem>
                     <SelectItem value="grande">Liza GRANDE – Chennai</SelectItem>
-                    <SelectItem value="altura">ALTURA by Liza – Chennai</SelectItem>
+                    <SelectItem value="altura">Liza ALTURA – Chennai</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -509,7 +509,7 @@ function Index() {
               Rest. Relax. Reconnect.
             </h2>
           </ScrollReveal>
-          <div className="mt-14 flex items-center gap-4 lg:gap-8">
+          <div className="mt-10 sm:mt-14 flex items-center gap-3 lg:gap-8">
             <CarouselButton label="Previous room" onClick={handlePrevRoom}>
               <ChevronLeft className="size-4" />
             </CarouselButton>
@@ -521,11 +521,14 @@ function Index() {
               )}
             >
               {orderedRooms.map(
-                (r) =>
+                (r, idx) =>
                   r && (
                     <article
                       key={r.name}
-                      className="overflow-hidden bg-cream shadow-lg transition-all duration-500 hover:shadow-2xl"
+                      className={cn(
+                        "overflow-hidden bg-cream shadow-lg transition-all duration-500 hover:shadow-2xl",
+                        idx > 0 && "hidden md:block",
+                      )}
                     >
                       <div className="overflow-hidden">
                         <img
@@ -534,23 +537,26 @@ function Index() {
                           width={900}
                           height={640}
                           loading="lazy"
-                          className="h-52 w-full object-cover transition-transform duration-700 hover:scale-108"
+                          className="h-48 sm:h-52 w-full object-cover transition-transform duration-700 hover:scale-108"
                         />
                       </div>
-                      <div className="p-6">
+                      <div className="p-5 sm:p-6">
                         <h3 className="font-serif text-xl text-forest">{r.name}</h3>
                         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                           {r.text}
                         </p>
-                        <div className="mt-6 flex items-center justify-between">
+                        <div className="mt-5 sm:mt-6 flex items-center justify-between">
                           <p className="text-xs text-muted-foreground">
                             From{" "}
                             <span className="text-sm font-semibold text-forest">{r.price}</span> /
                             night
                           </p>
-                          <button className="btn-shimmer bg-forest px-5 py-3 text-[0.65rem] tracking-[0.2em] uppercase text-forest-foreground transition-all duration-300 hover:bg-terracotta cursor-pointer">
+                          <Link
+                            to="/contact"
+                            className="btn-shimmer bg-forest px-4 py-2.5 sm:px-5 sm:py-3 text-[0.65rem] tracking-[0.2em] uppercase text-forest-foreground transition-all duration-300 hover:bg-terracotta cursor-pointer"
+                          >
                             View Room
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </article>
@@ -561,25 +567,44 @@ function Index() {
               <ChevronRight className="size-4" />
             </CarouselButton>
           </div>
+
+          {/* Mobile Featured Room Pagination Dots */}
+          <div className="mt-6 flex items-center justify-center gap-2 md:hidden">
+            {rooms.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  setRoomDirection(i > roomIndex ? "next" : "prev");
+                  setRoomIndex(i);
+                }}
+                aria-label={`Go to room ${i + 1}`}
+                className={cn(
+                  "transition-all duration-300 rounded-full cursor-pointer",
+                  i === roomIndex ? "h-1.5 w-6 bg-gold" : "size-1.5 bg-cream/30 hover:bg-cream/60",
+                )}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Amenities */}
-      <section className="bg-cream px-6 py-20 lg:py-24 pattern-cream-section">
+      <section className="bg-cream px-6 py-16 lg:py-24 pattern-cream-section">
         <div className="mx-auto max-w-7xl">
           <ScrollReveal variant="fade-up">
             <Eyebrow>Amenities</Eyebrow>
-            <h2 className="mt-5 text-center font-serif text-4xl text-forest lg:text-5xl">
+            <h2 className="mt-4 sm:mt-5 text-center font-serif text-3xl sm:text-4xl text-forest lg:text-5xl">
               Designed Around You
             </h2>
           </ScrollReveal>
-          <div className="mt-14 grid grid-cols-2 gap-y-10 sm:grid-cols-4 lg:grid-cols-8">
+          <div className="mt-10 sm:mt-14 grid grid-cols-2 gap-y-8 sm:gap-y-10 sm:grid-cols-4 lg:grid-cols-8">
             {amenities.map(({ label, Icon }, i) => (
               <ScrollReveal key={label} variant="fade-up" delay={i * 60}>
                 <div
-                  className={`group flex flex-col items-center gap-3 px-2 text-center ${i !== amenities.length - 1 ? "lg:border-r lg:border-border/60" : ""}`}
+                  className={`group flex flex-col items-center gap-2.5 sm:gap-3 px-2 text-center ${i !== amenities.length - 1 ? "lg:border-r lg:border-border/60" : ""}`}
                 >
-                  <Icon className="size-14 text-forest transition-transform duration-300 group-hover:scale-110 group-hover:text-gold" />
+                  <Icon className="size-11 sm:size-12 lg:size-14 text-forest transition-transform duration-300 group-hover:scale-110 group-hover:text-gold" />
                   <span className="text-xs font-medium tracking-wide text-forest/80 transition-colors group-hover:text-forest">
                     {label}
                   </span>
