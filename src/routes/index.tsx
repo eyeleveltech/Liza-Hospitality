@@ -496,6 +496,7 @@ function Index() {
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: "url('/brand-pattern.webp')",
+            backgroundSize: "280px",
             backgroundRepeat: "repeat",
             backgroundBlendMode: "overlay",
             mixBlendMode: "overlay",
@@ -655,6 +656,7 @@ function Index() {
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: "url('/brand-pattern.webp')",
+            backgroundSize: "280px",
             backgroundRepeat: "repeat",
             backgroundBlendMode: "overlay",
             mixBlendMode: "overlay",

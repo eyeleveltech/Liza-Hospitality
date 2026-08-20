@@ -145,7 +145,7 @@
     background-image: url("/brand-pattern.webp");
     background-size: 280px;
     background-repeat: repeat;
-    opacity: 0.08;
+    opacity: 0.06;
     z-index: -1;
     pointer-events: none;
   }
